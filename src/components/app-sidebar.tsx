@@ -6,13 +6,15 @@ import {
   BookOpen,
   Bot,
   Command,
-  Palette,
   GalleryVerticalEnd,
-  Settings,
-  Users,
+  PieChart,
   PlusCircle,
   Settings2,
   SquareTerminal,
+  Briefcase,
+  Users,
+  Palette,
+  Settings,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -60,7 +62,7 @@ const data = {
       title: "Base",
       url: "#",
       icon: SquareTerminal,
-      isActive: true,
+      isActive: false,
       items: [
         {
           title: "Dashboard",
@@ -118,7 +120,7 @@ const data = {
       ],
     },
     {
-      title: "Campaigns",
+      title: "Settings",
       url: "#",
       icon: Settings2,
       items: [
@@ -189,7 +191,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </div>
         <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
         <NavMain items={data.platform} id="platform" />
-        {/* Tools section intentionally removed */}        <div className="mt-1">
+        {/* Tools section intentionally removed */}
+        <div className="mt-1">
           <NavManagement projects={data.projects} />
         </div>
       </SidebarContent>
