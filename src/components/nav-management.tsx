@@ -29,7 +29,7 @@ export function NavManagement({
   return (
     <div className={hideTitle ? "py-0" : "py-4"}>
       {!hideTitle && (
-        <div className="px-4 py-1 text-xs font-medium text-muted-foreground pl-4">Management</div>
+        <div className="py-1 px-0 pl-4 text-xs font-medium text-muted-foreground">Management</div>
       )}
       <SidebarMenu className={hideTitle ? "gap-0 py-0 px-2" : "gap-1 py-1.5 px-2"}>
         {projects.map((project) => (
