@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, Check } from "lucide-react"
 
 import {
   SidebarMenu,
@@ -75,7 +75,7 @@ export function NavMain({
                     <SidebarMenuButton
                       isActive={item.isActive}
                       onClick={() => hasItems && toggleSubmenu(item.title)}
-                      className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer`}
+                      className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer ${item.isActive ? 'bg-opacity-100 dark:bg-opacity-90 font-semibold' : ''}`}
                     >
                       <item.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
                     </SidebarMenuButton>
@@ -88,7 +88,7 @@ export function NavMain({
                 <SidebarMenuButton
                   isActive={item.isActive}
                   onClick={() => hasItems && toggleSubmenu(item.title)}
-                  className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer`}
+                  className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer ${item.isActive ? 'bg-opacity-100 dark:bg-opacity-90 font-semibold' : ''}`}
                 >
                   <item.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
                   <span className="truncate">{item.title}</span>
@@ -97,6 +97,11 @@ export function NavMain({
                       <div className={`transform transition-transform duration-200 ${isOpen ? 'rotate-90' : 'rotate-0'}`}>
                         <ChevronRight className="size-4" />
                       </div>
+                    </div>
+                  )}
+                  {item.isActive && !hasItems && isExpanded && (
+                    <div className="absolute right-2">
+                      <Check className="size-4" />
                     </div>
                   )}
                 </SidebarMenuButton>
@@ -109,9 +114,12 @@ export function NavMain({
                       <SidebarMenuSubButton 
                         href={subItem.url}
                         isActive={subItem.isActive} 
-                        className="pl-4 pr-3 mx-2 py-1 rounded-md w-[calc(100%-16px)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer"
+                        className={`pl-4 pr-3 mx-2 py-1 rounded-md w-[calc(100%-16px)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer ${subItem.isActive ? 'bg-opacity-100 dark:bg-opacity-90 font-semibold' : ''}`}
                       >
                         {subItem.title}
+                        {subItem.isActive && (
+                          <Check className="size-4 ml-1" />
+                        )}
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}
