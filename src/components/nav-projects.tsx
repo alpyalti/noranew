@@ -28,11 +28,12 @@ export function NavProjects({
           </SidebarMenuItem>
         ))}
       </SidebarMenu>
-      <SidebarSeparator className="my-2" />
-      <Button variant="ghost" size="sm" className="w-full justify-start px-4">
-        <Plus className="mr-2 size-4" />
-        Add Project
-      </Button>
+      <div className="px-3 mt-2">
+        <Button variant="outline" size="sm" className="w-full justify-start">
+          <Plus className="mr-2 size-4" />
+          <span>Add Project</span>
+        </Button>
+      </div>
     </div>
   )
 } 

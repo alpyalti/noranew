@@ -50,7 +50,7 @@ const data = {
       plan: "Free",
     },
   ],
-  navMain: [
+  platform: [
     {
       title: "Playground",
       url: "#",
@@ -90,6 +90,8 @@ const data = {
         },
       ],
     },
+  ],
+  navMain: [
     {
       title: "Documentation",
       url: "#",
@@ -163,6 +165,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
+        <div className="px-4 py-2 text-xs font-medium text-muted-foreground">Platform</div>
+        <NavMain items={data.platform} />
+        <div className="px-4 py-2 text-xs font-medium text-muted-foreground">Tools</div>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
