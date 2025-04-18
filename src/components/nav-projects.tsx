@@ -1,14 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { Plus } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
 import { 
   SidebarMenu, 
   SidebarMenuItem, 
   SidebarMenuButton,
-  SidebarSeparator 
 } from "@/components/ui/sidebar"
 
 export function NavProjects({
@@ -35,13 +31,6 @@ export function NavProjects({
           </SidebarMenuItem>
         ))}
       </SidebarMenu>
-      <SidebarSeparator className="my-2" />
-      <div className="px-5 pt-1.5">
-        <Button variant="outline" size="sm" className="w-full justify-start pl-4 pr-3 rounded-md cursor-pointer">
-          <Plus className="mr-2 size-4" />
-          <span>Add Project</span>
-        </Button>
-      </div>
     </div>
   )
 } 

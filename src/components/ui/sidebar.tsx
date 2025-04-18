@@ -507,9 +507,20 @@ function SidebarMenuButton({
   asChild?: boolean
   isActive?: boolean
   tooltip?: string | React.ComponentProps<typeof TooltipContent>
+  "data-no-color-shift"?: string
 } & VariantProps<typeof sidebarMenuButtonVariants>) {
   const Comp = asChild ? Slot : "button"
   const { isMobile, state } = useSidebar()
+
+  // Eğer data-no-color-shift varsa, hover ve active stilleri kaldırılmalı
+  const noColorShift = props["data-no-color-shift"] === "true"
+  const propsWithoutCustomAttrs = { ...props }
+  delete propsWithoutCustomAttrs["data-no-color-shift"]
+
+  const buttonClasses = sidebarMenuButtonVariants({ variant, size })
+  const finalClassName = noColorShift 
+    ? buttonClasses.replace(/hover:bg-[^ ]+ hover:text-[^ ]+/, '') + ' hover:bg-opacity-10 hover:bg-gray-200'
+    : buttonClasses
 
   const button = (
     <Comp
@@ -517,8 +528,8 @@ function SidebarMenuButton({
       data-sidebar="menu-button"
       data-size={size}
       data-active={isActive}
-      className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
-      {...props}
+      className={cn(finalClassName, className)}
+      {...propsWithoutCustomAttrs}
     />
   )
 

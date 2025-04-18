@@ -10,6 +10,7 @@ import {
   GalleryVerticalEnd,
   Map,
   PieChart,
+  PlusCircle,
   Settings2,
   SquareTerminal,
 } from "lucide-react"
@@ -23,7 +24,11 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar"
 
 // This is sample data.
@@ -159,12 +164,33 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { state } = useSidebar()
+  const isExpanded = state === "expanded"
+  
+  const handleQuickCreate = React.useCallback(() => {
+    alert("Quick Create button clicked!")
+    // Gerçek uygulamada burada bir modal veya form açabilirsiniz
+  }, [])
+  
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
+        <div className="py-4">
+          <SidebarMenu className="gap-1 py-1.5 px-2">
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                onClick={handleQuickCreate}
+                className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
+              >
+                <PlusCircle className="size-4 mr-2" />
+                <span className="truncate font-medium">Quick Create</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </div>
         <div className="px-4 py-2 text-xs font-medium text-muted-foreground">Platform</div>
         <NavMain items={data.platform} id="platform" />
         <div className="px-4 py-2 text-xs font-medium text-muted-foreground">Tools</div>
