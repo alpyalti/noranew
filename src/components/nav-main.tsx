@@ -48,7 +48,7 @@ export function NavMain({
   }
 
   return (
-    <SidebarMenu className="gap-1 py-1.5 px-2">
+    <SidebarMenu className="gap-0.5 py-1 px-2">
       {items.map((item) => {
         const isOpen = openSubmenus.includes(item.title)
         const hasItems = item.items && item.items.length > 0
@@ -71,12 +71,12 @@ export function NavMain({
               )}
             </SidebarMenuButton>
             {hasItems && isOpen && item.items && isExpanded && (
-              <SidebarMenuSub className="px-0 mx-3">
+              <SidebarMenuSub className="px-0 mx-3 mt-0.5 mb-1">
                 {item.items.map((subItem) => (
                   <SidebarMenuSubItem key={`${id || "default"}-${item.title}-${subItem.title}`}>
                     <SidebarMenuSubButton 
                       href={subItem.url} 
-                      className="pl-6 pr-3 mx-2 rounded-md w-[calc(100%-16px)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer"
+                      className="pl-6 pr-3 mx-2 py-1 rounded-md w-[calc(100%-16px)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer"
                     >
                       {subItem.title}
                     </SidebarMenuSubButton>
