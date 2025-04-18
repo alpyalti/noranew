@@ -75,7 +75,7 @@ export function NavMain({
                     <SidebarMenuButton
                       isActive={item.isActive}
                       onClick={() => hasItems && toggleSubmenu(item.title)}
-                      className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer ${item.isActive ? 'bg-primary/40 dark:bg-primary/30 font-semibold shadow-sm' : ''}`}
+                      className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer ${item.isActive ? 'bg-primary/90 dark:bg-primary/30 font-semibold shadow-sm' : ''}`}
                     >
                       <item.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'} ${item.isActive ? 'text-primary' : ''}`} />
                     </SidebarMenuButton>
