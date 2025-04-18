@@ -31,7 +31,7 @@ export function NavMain({
   )
 
   return (
-    <SidebarMenu>
+    <SidebarMenu className="gap-1 py-1.5">
       {items.map((item) => {
         const isOpen = openSubmenu === item.title
         const hasItems = item.items && item.items.length > 0
@@ -46,11 +46,9 @@ export function NavMain({
               <span className="truncate">{item.title}</span>
               {hasItems && (
                 <div className="ml-auto mr-1">
-                  {isOpen ? (
-                    <ChevronDown className="size-4" />
-                  ) : (
+                  <div className={`transform transition-transform duration-200 ${isOpen ? 'rotate-90' : 'rotate-0'}`}>
                     <ChevronRight className="size-4" />
-                  )}
+                  </div>
                 </div>
               )}
             </SidebarMenuButton>

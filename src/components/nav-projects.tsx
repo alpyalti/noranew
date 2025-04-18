@@ -21,9 +21,9 @@ export function NavProjects({
   }[]
 }) {
   return (
-    <div className="py-2">
+    <div className="py-4">
       <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Projects</div>
-      <SidebarMenu>
+      <SidebarMenu className="gap-1 py-1.5">
         {projects.map((project) => (
           <SidebarMenuItem key={project.name}>
             <SidebarMenuButton asChild>
@@ -36,7 +36,7 @@ export function NavProjects({
         ))}
       </SidebarMenu>
       <SidebarSeparator className="my-2" />
-      <div className="px-3">
+      <div className="px-3 pt-1.5">
         <Button variant="outline" size="sm" className="w-full justify-start">
           <Plus className="mr-2 size-4" />
           <span>Add Project</span>
