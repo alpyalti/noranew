@@ -49,7 +49,7 @@ export function NavMain({
   }
 
   return (
-    <SidebarMenu className="gap-0.5 py-1 px-2">
+    <SidebarMenu className={isExpanded ? "gap-0.5 py-1 px-2" : "gap-0 py-0 px-2"}>
       {items.map((item) => {
         const isOpen = openSubmenus.includes(item.title)
         const hasItems = item.items && item.items.length > 0

@@ -9,17 +9,21 @@ import {
 
 export function NavManagement({
   projects,
+  hideTitle = false
 }: {
   projects: {
     name: string
     url: string
     icon: React.ElementType
   }[]
+  hideTitle?: boolean
 }) {
   return (
-    <div className="py-4">
-      <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Management</div>
-      <SidebarMenu className="gap-1 py-1.5 px-2">
+    <div className={hideTitle ? "py-1" : "py-4"}>
+      {!hideTitle && (
+        <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Management</div>
+      )}
+      <SidebarMenu className={hideTitle ? "gap-0 py-0 px-2" : "gap-1 py-1.5 px-2"}>
         {projects.map((project) => (
           <SidebarMenuItem key={project.name}>
             <SidebarMenuButton asChild className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer">
