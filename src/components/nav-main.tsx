@@ -75,7 +75,7 @@ export function NavMain({
                     <SidebarMenuButton
                       isActive={item.isActive}
                       onClick={() => hasItems && toggleSubmenu(item.title)}
-                      className={`pl-4 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer`}
+                      className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer`}
                     >
                       <item.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
                     </SidebarMenuButton>
@@ -88,7 +88,7 @@ export function NavMain({
                 <SidebarMenuButton
                   isActive={item.isActive}
                   onClick={() => hasItems && toggleSubmenu(item.title)}
-                  className={`pl-4 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer`}
+                  className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer`}
                 >
                   <item.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
                   <span className="truncate">{item.title}</span>
@@ -109,7 +109,7 @@ export function NavMain({
                       <SidebarMenuSubButton 
                         href={subItem.url}
                         isActive={subItem.isActive} 
-                        className="pl-6 pr-3 mx-2 py-1 rounded-md w-[calc(100%-16px)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer"
+                        className="pl-4 pr-3 mx-2 py-1 rounded-md w-[calc(100%-16px)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer"
                       >
                         {subItem.title}
                       </SidebarMenuSubButton>

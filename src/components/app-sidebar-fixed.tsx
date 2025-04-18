@@ -162,7 +162,7 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
                 {isExpanded ? (
                   <SidebarMenuButton
                     onClick={handleQuickCreate}
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 pl-4 pr-8 mx-0 rounded-md w-full"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 pl-2 pr-8 mx-0 rounded-md w-full"
                   >
                     <PlusCircle className="size-4 mr-2" />
                     <span className="truncate font-medium">Quick Create</span>
@@ -172,7 +172,7 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
                     <TooltipTrigger asChild>
                       <SidebarMenuButton
                         onClick={handleQuickCreate}
-                        className="bg-primary text-primary-foreground hover:bg-primary/90 pl-4 pr-2 mx-0 rounded-md w-full"
+                        className="bg-primary text-primary-foreground hover:bg-primary/90 pl-2 pr-2 mx-0 rounded-md w-full"
                       >
                         <PlusCircle className="size-4" />
                       </SidebarMenuButton>
@@ -187,7 +187,7 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
           </div>
           {isExpanded ? (
             <>
-              <div className="py-1 px-0 pl-4 text-xs font-medium text-muted-foreground">Platform</div>
+              <div className="px-2 py-1 text-xs font-medium text-muted-foreground">Platform</div>
               <NavMain items={data.platform} id="platform" isCompact={false} initialOpenItems={initialOpenPlatformItems} />
               <div className="mt-1">
                 <NavManagement projects={data.projects} hideTitle={false} isCompact={false} />
