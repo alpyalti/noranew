@@ -21,13 +21,16 @@ export function NavManagement({
   isCompact?: boolean
 }) {
   return (
-    <div className={hideTitle ? "py-1" : "py-4"}>
+    <div className={hideTitle ? "py-0" : "py-4"}>
+      {!hideTitle && (
+        <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Management</div>
+      )}
       <SidebarMenu className={hideTitle ? "gap-0 py-0 px-2" : "gap-1 py-1.5 px-2"}>
         {projects.map((project) => (
           <SidebarMenuItem key={project.name}>
             <SidebarMenuButton asChild className={`pl-4 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer`}>
               <a href={project.url}>
-                <project.icon className="size-4 mr-2" />
+                <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
                 {!isCompact && <span className="truncate">{project.name}</span>}
               </a>
             </SidebarMenuButton>

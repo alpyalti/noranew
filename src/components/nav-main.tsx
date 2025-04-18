@@ -51,7 +51,7 @@ export function NavMain({
   }
 
   return (
-    <SidebarMenu className={isExpanded ? "gap-0.5 py-1 px-2" : "gap-0 py-0 px-2"}>
+    <SidebarMenu className={isCompact ? "gap-0 py-0 px-2" : "gap-0.5 py-1 px-2"}>
       {items.map((item) => {
         const isOpen = openSubmenus.includes(item.title)
         const hasItems = item.items && item.items.length > 0
@@ -63,7 +63,7 @@ export function NavMain({
               onClick={() => hasItems && toggleSubmenu(item.title)}
               className={`pl-4 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer`}
             >
-              <item.icon className="size-4 mr-2" />
+              <item.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
               {!isCompact && <span className="truncate">{item.title}</span>}
               {hasItems && isExpanded && !isCompact && (
                 <div className="absolute right-2">

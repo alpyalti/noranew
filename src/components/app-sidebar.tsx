@@ -161,7 +161,8 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  useSidebar()
+  const { state } = useSidebar()
+  const isExpanded = state === "expanded"
   
   const handleQuickCreate = React.useCallback(() => {
     alert("Quick Create button clicked!")
@@ -173,7 +174,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className={isExpanded ? "" : "space-y-0"}>
         <div className="py-2">
           <SidebarMenu className="gap-0.5 py-1 px-2">
             <SidebarMenuItem>
@@ -182,17 +183,27 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 <PlusCircle className="size-4 mr-2" />
-                <span className="truncate font-medium">Quick Create</span>
+                {isExpanded && <span className="truncate font-medium">Quick Create</span>}
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
         </div>
-        <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
-        <NavMain items={data.platform} id="platform" />
-        {/* Tools section intentionally removed */}
-        <div className="mt-1">
-          <NavManagement projects={data.projects} />
-        </div>
+        {isExpanded ? (
+          <>
+            <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
+            <NavMain items={data.platform} id="platform" isCompact={!isExpanded} />
+            <div className="mt-1">
+              <NavManagement projects={data.projects} hideTitle={!isExpanded} isCompact={!isExpanded} />
+            </div>
+          </>
+        ) : (
+          <>
+            <NavMain items={data.platform} id="platform" isCompact={true} />
+            <div className="mt-0">
+              <NavManagement projects={data.projects} hideTitle={true} isCompact={true} />
+            </div>
+          </>
+        )}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
