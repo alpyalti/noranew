@@ -57,21 +57,21 @@ const data = {
   ],
   platform: [
     {
-      title: "Playground",
+      title: "Base",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Dashboard",
           url: "#",
         },
         {
-          title: "Starred",
+          title: "Table",
           url: "#",
         },
         {
-          title: "Settings",
+          title: "Campaigns",
           url: "#",
         },
       ],
@@ -82,15 +82,11 @@ const data = {
       icon: Bot,
       items: [
         {
-          title: "Genesis",
-          url: "#",
-        },
-        {
           title: "Explorer",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Creator",
           url: "#",
         },
       ],
@@ -121,7 +117,7 @@ const data = {
       ],
     },
     {
-      title: "Settings",
+      title: "Campaigns",
       url: "#",
       icon: Settings2,
       items: [
