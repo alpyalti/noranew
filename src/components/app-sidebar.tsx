@@ -31,6 +31,11 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 // This is sample data.
 const data = {
@@ -180,13 +185,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <div className="py-2">
             <SidebarMenu className="gap-0.5 py-1 px-2">
               <SidebarMenuItem>
-                <SidebarMenuButton 
-                  onClick={handleQuickCreate}
-                  className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
-                >
-                  <PlusCircle className="size-4 mr-2" />
-                  {isExpanded && <span className="truncate font-medium">Quick Create</span>}
-                </SidebarMenuButton>
+                {isExpanded ? (
+                  <SidebarMenuButton 
+                    onClick={handleQuickCreate}
+                    className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
+                  >
+                    <PlusCircle className="size-4 mr-2" />
+                    <span className="truncate font-medium">Quick Create</span>
+                  </SidebarMenuButton>
+                ) : (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <SidebarMenuButton 
+                        onClick={handleQuickCreate}
+                        className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
+                      >
+                        <PlusCircle className="size-4" />
+                      </SidebarMenuButton>
+                    </TooltipTrigger>
+                    <TooltipContent side="right" align="center">
+                      Quick Create
+                    </TooltipContent>
+                  </Tooltip>
+                )}
               </SidebarMenuItem>
             </SidebarMenu>
           </div>
@@ -197,12 +218,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <div className="mt-1">
                 <NavManagement projects={data.projects} hideTitle={false} isCompact={false} />
               </div>
+              <div className="mt-1">
+                <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Tools</div>
+                <NavMain items={data.navMain} id="tools" isCompact={false} />
+              </div>
             </>
           ) : (
             <div className="flex flex-col space-y-0 pt-0 mt-0">
               <NavMain items={data.platform} id="platform" isCompact={true} />
               <div className="pt-0 mt-0">
                 <NavManagement projects={data.projects} hideTitle={true} isCompact={true} />
+              </div>
+              <div className="pt-1 mt-0">
+                <NavMain items={data.navMain} id="tools" isCompact={true} />
               </div>
             </div>
           )}
