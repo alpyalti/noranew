@@ -7,7 +7,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 
-export function NavProjects({
+export function NavManagement({
   projects,
 }: {
   projects: {
@@ -18,7 +18,7 @@ export function NavProjects({
 }) {
   return (
     <div className="py-4">
-      <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Projects</div>
+      <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Management</div>
       <SidebarMenu className="gap-1 py-1.5 px-2">
         {projects.map((project) => (
           <SidebarMenuItem key={project.name}>
