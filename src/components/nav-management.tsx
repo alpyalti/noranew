@@ -6,6 +6,12 @@ import {
   SidebarMenuItem, 
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export function NavManagement({
   projects,
@@ -28,12 +34,27 @@ export function NavManagement({
       <SidebarMenu className={hideTitle ? "gap-0 py-0 px-2" : "gap-1 py-1.5 px-2"}>
         {projects.map((project) => (
           <SidebarMenuItem key={project.name}>
-            <SidebarMenuButton asChild className={`pl-4 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer`}>
-              <a href={project.url}>
-                <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
-                {!isCompact && <span className="truncate">{project.name}</span>}
-              </a>
-            </SidebarMenuButton>
+            {isCompact ? (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <SidebarMenuButton asChild className={`pl-4 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer`}>
+                    <a href={project.url}>
+                      <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
+                    </a>
+                  </SidebarMenuButton>
+                </TooltipTrigger>
+                <TooltipContent side="right" align="center">
+                  {project.name}
+                </TooltipContent>
+              </Tooltip>
+            ) : (
+              <SidebarMenuButton asChild className={`pl-4 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer`}>
+                <a href={project.url}>
+                  <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
+                  <span className="truncate">{project.name}</span>
+                </a>
+              </SidebarMenuButton>
+            )}
           </SidebarMenuItem>
         ))}
       </SidebarMenu>
