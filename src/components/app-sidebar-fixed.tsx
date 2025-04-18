@@ -166,7 +166,7 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
 
   const compactButtonStyle = {
     ...buttonStyle,
-    padding: '0.375rem',
+    padding: '0.5rem',
     justifyContent: 'center'
   }
 
@@ -211,7 +211,7 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
                         onMouseOver={handleMouseOver}
                         onMouseOut={handleMouseOut}
                       >
-                        <PlusCircle className="size-4" />
+                        <PlusCircle className="size-5" />
                       </button>
                     </TooltipTrigger>
                     <TooltipContent side="right" align="center">
