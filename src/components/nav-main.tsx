@@ -61,7 +61,7 @@ export function NavMain({
             <SidebarMenuButton
               isActive={item.isActive}
               onClick={() => hasItems && toggleSubmenu(item.title)}
-              className="pl-4 pr-8 mx-0 rounded-md w-full relative cursor-pointer"
+              className={`pl-4 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer`}
             >
               <item.icon className="size-4 mr-2" />
               {!isCompact && <span className="truncate">{item.title}</span>}
