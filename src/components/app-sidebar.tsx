@@ -30,6 +30,7 @@ import {
   SidebarRail,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 // This is sample data.
 const data = {
@@ -170,45 +171,47 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   }, [])
   
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
-      </SidebarHeader>
-      <SidebarContent className={isExpanded ? "" : "space-y-0"}>
-        <div className="py-2">
-          <SidebarMenu className="gap-0.5 py-1 px-2">
-            <SidebarMenuItem>
-              <SidebarMenuButton 
-                onClick={handleQuickCreate}
-                className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                <PlusCircle className="size-4 mr-2" />
-                {isExpanded && <span className="truncate font-medium">Quick Create</span>}
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </div>
-        {isExpanded ? (
-          <>
-            <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
-            <NavMain items={data.platform} id="platform" isCompact={!isExpanded} />
-            <div className="mt-1">
-              <NavManagement projects={data.projects} hideTitle={!isExpanded} isCompact={!isExpanded} />
+    <TooltipProvider delayDuration={300}>
+      <Sidebar collapsible="icon" {...props}>
+        <SidebarHeader>
+          <TeamSwitcher teams={data.teams} />
+        </SidebarHeader>
+        <SidebarContent className={isExpanded ? "" : "space-y-0"}>
+          <div className="py-2">
+            <SidebarMenu className="gap-0.5 py-1 px-2">
+              <SidebarMenuItem>
+                <SidebarMenuButton 
+                  onClick={handleQuickCreate}
+                  className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  <PlusCircle className="size-4 mr-2" />
+                  {isExpanded && <span className="truncate font-medium">Quick Create</span>}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </div>
+          {isExpanded ? (
+            <>
+              <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
+              <NavMain items={data.platform} id="platform" isCompact={false} />
+              <div className="mt-1">
+                <NavManagement projects={data.projects} hideTitle={false} isCompact={false} />
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-col space-y-0 pt-0 mt-0">
+              <NavMain items={data.platform} id="platform" isCompact={true} />
+              <div className="pt-0 mt-0">
+                <NavManagement projects={data.projects} hideTitle={true} isCompact={true} />
+              </div>
             </div>
-          </>
-        ) : (
-          <>
-            <NavMain items={data.platform} id="platform" isCompact={true} />
-            <div className="mt-0">
-              <NavManagement projects={data.projects} hideTitle={true} isCompact={true} />
-            </div>
-          </>
-        )}
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
+          )}
+        </SidebarContent>
+        <SidebarFooter>
+          <NavUser user={data.user} />
+        </SidebarFooter>
+        <SidebarRail />
+      </Sidebar>
+    </TooltipProvider>
   )
 }
