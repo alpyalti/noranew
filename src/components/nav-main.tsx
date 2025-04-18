@@ -75,9 +75,9 @@ export function NavMain({
                     <SidebarMenuButton
                       isActive={item.isActive}
                       onClick={() => hasItems && toggleSubmenu(item.title)}
-                      className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer ${item.isActive ? 'bg-opacity-100 dark:bg-opacity-90 font-semibold' : ''}`}
+                      className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer ${item.isActive ? 'bg-opacity-100 dark:bg-opacity-80 font-semibold shadow-sm' : ''}`}
                     >
-                      <item.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
+                      <item.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'} ${item.isActive ? 'text-primary' : ''}`} />
                     </SidebarMenuButton>
                   </TooltipTrigger>
                   <TooltipContent side="right" align="center">
@@ -88,9 +88,9 @@ export function NavMain({
                 <SidebarMenuButton
                   isActive={item.isActive}
                   onClick={() => hasItems && toggleSubmenu(item.title)}
-                  className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer ${item.isActive ? 'bg-opacity-100 dark:bg-opacity-90 font-semibold' : ''}`}
+                  className={`pl-2 ${isCompact ? 'pr-2' : 'pr-8'} mx-0 rounded-md w-full relative cursor-pointer ${item.isActive ? 'bg-opacity-100 dark:bg-opacity-80 font-semibold shadow-sm' : ''}`}
                 >
-                  <item.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
+                  <item.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'} ${item.isActive ? 'text-primary' : ''}`} />
                   <span className="truncate">{item.title}</span>
                   {hasItems && isExpanded && (
                     <div className="absolute right-2">
@@ -101,7 +101,7 @@ export function NavMain({
                   )}
                   {item.isActive && !hasItems && isExpanded && (
                     <div className="absolute right-2">
-                      <Check className="size-4" />
+                      <Check className="size-4 text-primary" />
                     </div>
                   )}
                 </SidebarMenuButton>
@@ -114,11 +114,11 @@ export function NavMain({
                       <SidebarMenuSubButton 
                         href={subItem.url}
                         isActive={subItem.isActive} 
-                        className={`pl-4 pr-3 mx-2 py-1 rounded-md w-[calc(100%-16px)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer ${subItem.isActive ? 'bg-opacity-100 dark:bg-opacity-90 font-semibold' : ''}`}
+                        className={`pl-4 pr-3 mx-2 py-1 rounded-md w-[calc(100%-16px)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer ${subItem.isActive ? 'bg-opacity-100 dark:bg-opacity-80 font-semibold shadow-sm' : ''}`}
                       >
                         {subItem.title}
                         {subItem.isActive && (
-                          <Check className="size-4 ml-1" />
+                          <Check className="size-4 ml-1 text-primary" />
                         )}
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
