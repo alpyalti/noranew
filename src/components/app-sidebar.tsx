@@ -166,9 +166,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <div className="px-4 py-2 text-xs font-medium text-muted-foreground">Platform</div>
-        <NavMain items={data.platform} />
+        <NavMain items={data.platform} id="platform" />
         <div className="px-4 py-2 text-xs font-medium text-muted-foreground">Tools</div>
-        <NavMain items={data.navMain} />
+        <NavMain items={data.navMain} id="tools" />
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>

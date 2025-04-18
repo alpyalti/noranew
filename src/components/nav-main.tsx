@@ -14,6 +14,7 @@ import {
 
 export function NavMain({
   items,
+  id,
 }: {
   items: {
     title: string
@@ -25,6 +26,7 @@ export function NavMain({
       url: string
     }[]
   }[]
+  id?: string
 }) {
   const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(
     items.find((item) => item.isActive)?.title || null
@@ -42,7 +44,7 @@ export function NavMain({
         const hasItems = item.items && item.items.length > 0
 
         return (
-          <SidebarMenuItem key={item.title}>
+          <SidebarMenuItem key={`${id || "default"}-${item.title}`}>
             <SidebarMenuButton
               isActive={item.isActive}
               onClick={() => hasItems && toggleSubmenu(item.title)}
@@ -60,7 +62,7 @@ export function NavMain({
             {hasItems && isOpen && item.items && (
               <SidebarMenuSub>
                 {item.items.map((subItem) => (
-                  <SidebarMenuSubItem key={subItem.title}>
+                  <SidebarMenuSubItem key={`${id || "default"}-${item.title}-${subItem.title}`}>
                     <SidebarMenuSubButton href={subItem.url}>
                       {subItem.title}
                     </SidebarMenuSubButton>
