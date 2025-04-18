@@ -162,7 +162,7 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
                 {isExpanded ? (
                   <SidebarMenuButton
                     onClick={handleQuickCreate}
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 pl-2 pr-8 mx-0 rounded-md w-full"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-white pl-2 pr-8 mx-0 rounded-md w-full cursor-pointer"
                   >
                     <PlusCircle className="size-4 mr-2" />
                     <span className="truncate font-medium">Quick Create</span>
@@ -172,7 +172,7 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
                     <TooltipTrigger asChild>
                       <SidebarMenuButton
                         onClick={handleQuickCreate}
-                        className="bg-primary text-primary-foreground hover:bg-primary/90 pl-2 pr-2 mx-0 rounded-md w-full"
+                        className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-white pl-2 pr-2 mx-0 rounded-md w-full cursor-pointer"
                       >
                         <PlusCircle className="size-4" />
                       </SidebarMenuButton>
