@@ -1,0 +1,15 @@
+/* Sidebar daraltıldığında section başlıklarını gizle */
+[data-state="collapsed"] [data-sidebar="content"] .section-heading {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Daraltılmış durumdaki sidebar'da aralıkları kaldır */
+[data-state="collapsed"] [data-sidebar="content"] {
+  gap: 0 !important;
+} 
