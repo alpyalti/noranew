@@ -16,6 +16,7 @@ import {
 export function NavMain({
   items,
   id,
+  isCompact = false
 }: {
   items: {
     title: string
@@ -29,6 +30,7 @@ export function NavMain({
     }[]
   }[]
   id?: string
+  isCompact?: boolean
 }) {
   // Sidebar durumunu alıyoruz
   const { state } = useSidebar()
@@ -62,8 +64,8 @@ export function NavMain({
               className="pl-4 pr-8 mx-0 rounded-md w-full relative cursor-pointer"
             >
               <item.icon className="size-4 mr-2" />
-              <span className="truncate">{item.title}</span>
-              {hasItems && isExpanded && (
+              {!isCompact && <span className="truncate">{item.title}</span>}
+              {hasItems && isExpanded && !isCompact && (
                 <div className="absolute right-2">
                   <div className={`transform transition-transform duration-200 ${isOpen ? 'rotate-90' : 'rotate-0'}`}>
                     <ChevronRight className="size-4" />
@@ -71,7 +73,7 @@ export function NavMain({
                 </div>
               )}
             </SidebarMenuButton>
-            {hasItems && isOpen && item.items && isExpanded && (
+            {hasItems && isOpen && item.items && isExpanded && !isCompact && (
               <SidebarMenuSub className="px-0 mx-3 mt-0.5 mb-1">
                 {item.items.map((subItem) => (
                   <SidebarMenuSubItem key={`${id || "default"}-${item.title}-${subItem.title}`}>

@@ -9,7 +9,8 @@ import {
 
 export function NavManagement({
   projects,
-  hideTitle = false
+  hideTitle = false,
+  isCompact = false
 }: {
   projects: {
     name: string
@@ -17,6 +18,7 @@ export function NavManagement({
     icon: React.ElementType
   }[]
   hideTitle?: boolean
+  isCompact?: boolean
 }) {
   return (
     <div className={hideTitle ? "py-1" : "py-4"}>
@@ -29,7 +31,7 @@ export function NavManagement({
             <SidebarMenuButton asChild className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer">
               <a href={project.url}>
                 <project.icon className="size-4 mr-2" />
-                <span className="truncate">{project.name}</span>
+                {!isCompact && <span className="truncate">{project.name}</span>}
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
