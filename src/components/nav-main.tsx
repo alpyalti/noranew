@@ -25,6 +25,7 @@ export function NavMain({
     items?: {
       title: string
       url: string
+      isActive?: boolean
     }[]
   }[]
   id?: string
@@ -75,7 +76,8 @@ export function NavMain({
                 {item.items.map((subItem) => (
                   <SidebarMenuSubItem key={`${id || "default"}-${item.title}-${subItem.title}`}>
                     <SidebarMenuSubButton 
-                      href={subItem.url} 
+                      href={subItem.url}
+                      isActive={subItem.isActive} 
                       className="pl-6 pr-3 mx-2 py-1 rounded-md w-[calc(100%-16px)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer"
                     >
                       {subItem.title}
