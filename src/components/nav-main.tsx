@@ -22,7 +22,8 @@ import {
 export function NavMain({
   items,
   id,
-  isCompact = false
+  isCompact = false,
+  initialOpenItems = []
 }: {
   items: {
     title: string
@@ -37,6 +38,7 @@ export function NavMain({
   }[]
   id?: string
   isCompact?: boolean
+  initialOpenItems?: string[]
 }) {
   // Sidebar durumunu alıyoruz
   const { state } = useSidebar()
@@ -44,7 +46,9 @@ export function NavMain({
 
   // Açık menüleri dizi olarak tutuyoruz, böylece birden fazla menü açık kalabilir
   const [openSubmenus, setOpenSubmenus] = React.useState<string[]>(
-    items.filter((item) => item.isActive).map(item => item.title)
+    items
+      .filter(item => item.isActive || initialOpenItems.includes(item.title))
+      .map(item => item.title)
   )
 
   // Toggle fonksiyonu - menü açıksa kapat, değilse aç

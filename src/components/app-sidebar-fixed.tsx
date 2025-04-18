@@ -121,6 +121,9 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
   const isExpanded = state === "expanded"
   const [isDarkMode, setIsDarkMode] = React.useState(false)
   
+  // Platform menü öğeleri için başlangıçta açık olacak başlıkları belirle
+  const initialOpenPlatformItems = React.useMemo(() => ["Base", "Models"], [])
+  
   React.useEffect(() => {
     // Dark mod tespiti
     const isDark = document.documentElement.classList.contains('dark')
@@ -185,14 +188,14 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
           {isExpanded ? (
             <>
               <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
-              <NavMain items={data.platform} id="platform" isCompact={false} />
+              <NavMain items={data.platform} id="platform" isCompact={false} initialOpenItems={initialOpenPlatformItems} />
               <div className="mt-1">
                 <NavManagement projects={data.projects} hideTitle={false} isCompact={false} />
               </div>
             </>
           ) : (
             <div className="flex flex-col space-y-0 pt-0 mt-0">
-              <NavMain items={data.platform} id="platform" isCompact={true} />
+              <NavMain items={data.platform} id="platform" isCompact={true} initialOpenItems={initialOpenPlatformItems} />
               <div className="pt-0 mt-0">
                 <NavManagement projects={data.projects} hideTitle={true} isCompact={true} />
               </div>
