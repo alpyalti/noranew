@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ChevronDown, ChevronRight } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 
 import {
   SidebarMenu,
@@ -30,6 +30,11 @@ export function NavMain({
     items.find((item) => item.isActive)?.title || null
   )
 
+  // Toggle fonksiyonu - önceki menü açıksa kapat, değilse yeni menüyü aç
+  const toggleSubmenu = (title: string) => {
+    setOpenSubmenu(prev => prev === title ? null : title)
+  }
+
   return (
     <SidebarMenu className="gap-1 py-1.5">
       {items.map((item) => {
@@ -40,7 +45,7 @@ export function NavMain({
           <SidebarMenuItem key={item.title}>
             <SidebarMenuButton
               isActive={item.isActive}
-              onClick={() => hasItems && setOpenSubmenu(isOpen ? null : item.title)}
+              onClick={() => hasItems && toggleSubmenu(item.title)}
             >
               <item.icon className="size-4 mr-2" />
               <span className="truncate">{item.title}</span>
