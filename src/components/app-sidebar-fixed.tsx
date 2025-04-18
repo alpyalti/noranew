@@ -24,6 +24,7 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
+  SidebarMenuButton,
   SidebarRail,
   useSidebar,
 } from "@/components/ui/sidebar"
@@ -145,43 +146,6 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
     // Gerçek uygulamada burada bir modal veya form açabilirsiniz
   }, [])
   
-  // Buton stilleri
-  const buttonStyle = {
-    backgroundColor: isDarkMode ? 'white' : 'black',
-    color: isDarkMode ? 'black' : 'white',
-    padding: '0.375rem 0.75rem',
-    paddingLeft: '1rem',
-    paddingRight: '0.75rem',
-    marginLeft: '0',
-    marginRight: '0',
-    borderRadius: '0.375rem',
-    width: '100%',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    fontWeight: 500,
-    fontSize: '0.875rem'
-  }
-
-  const compactButtonStyle = {
-    ...buttonStyle,
-    padding: '0.5rem 0.75rem',
-    justifyContent: 'flex-start'
-  }
-
-  const handleMouseOver = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.style.backgroundColor = isDarkMode 
-      ? 'rgba(255,255,255,0.9)' 
-      : 'rgba(0,0,0,0.9)'
-  }
-
-  const handleMouseOut = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.currentTarget.style.backgroundColor = isDarkMode 
-      ? 'white' 
-      : 'black'
-  }
-  
   return (
     <TooltipProvider delayDuration={300}>
       <Sidebar collapsible="icon" {...props}>
@@ -193,26 +157,22 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
             <SidebarMenu className="gap-0.5 py-1 px-2">
               <SidebarMenuItem>
                 {isExpanded ? (
-                  <button 
+                  <SidebarMenuButton
                     onClick={handleQuickCreate}
-                    style={buttonStyle}
-                    onMouseOver={handleMouseOver}
-                    onMouseOut={handleMouseOut}
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 pl-4 pr-8 mx-0 rounded-md w-full"
                   >
                     <PlusCircle className="size-4 mr-2" />
                     <span className="truncate font-medium">Quick Create</span>
-                  </button>
+                  </SidebarMenuButton>
                 ) : (
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button 
+                      <SidebarMenuButton
                         onClick={handleQuickCreate}
-                        style={compactButtonStyle}
-                        onMouseOver={handleMouseOver}
-                        onMouseOut={handleMouseOut}
+                        className="bg-primary text-primary-foreground hover:bg-primary/90 pl-4 pr-2 mx-0 rounded-md w-full"
                       >
                         <PlusCircle className="size-4" />
-                      </button>
+                      </SidebarMenuButton>
                     </TooltipTrigger>
                     <TooltipContent side="right" align="center">
                       Quick Create
