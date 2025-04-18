@@ -65,6 +65,7 @@ const data = {
         {
           title: "Dashboard",
           url: "#",
+          isActive: true,
         },
         {
           title: "Table",
