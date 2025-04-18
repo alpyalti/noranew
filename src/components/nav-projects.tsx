@@ -4,7 +4,12 @@ import * as React from "react"
 import { Plus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Sidebar, SidebarMenu, SidebarMenuItem, SidebarSeparator } from "@/components/ui/sidebar"
+import { 
+  SidebarMenu, 
+  SidebarMenuItem, 
+  SidebarMenuButton,
+  SidebarSeparator 
+} from "@/components/ui/sidebar"
 
 export function NavProjects({
   projects,
@@ -21,14 +26,17 @@ export function NavProjects({
       <SidebarMenu>
         {projects.map((project) => (
           <SidebarMenuItem key={project.name}>
-            <a href={project.url} className="flex items-center">
-              <project.icon className="size-4 mr-2" />
-              <span className="truncate">{project.name}</span>
-            </a>
+            <SidebarMenuButton asChild>
+              <a href={project.url}>
+                <project.icon className="size-4 mr-2" />
+                <span className="truncate">{project.name}</span>
+              </a>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
       </SidebarMenu>
-      <div className="px-3 mt-2">
+      <SidebarSeparator className="my-2" />
+      <div className="px-3">
         <Button variant="outline" size="sm" className="w-full justify-start">
           <Plus className="mr-2 size-4" />
           <span>Add Project</span>
