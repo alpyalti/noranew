@@ -7,11 +7,9 @@ import {
   Bot,
   Command,
   GalleryVerticalEnd,
-  PieChart,
   PlusCircle,
   Settings2,
   SquareTerminal,
-  Briefcase,
   Users,
   Palette,
   Settings,
@@ -163,7 +161,7 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { state } = useSidebar()
+  useSidebar()
   
   const handleQuickCreate = React.useCallback(() => {
     alert("Quick Create button clicked!")
