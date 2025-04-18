@@ -178,8 +178,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <div className="py-4">
-          <SidebarMenu className="gap-1 py-1.5 px-2">
+        <div className="py-2">
+          <SidebarMenu className="gap-0.5 py-1 px-2">
             <SidebarMenuItem>
               <SidebarMenuButton 
                 onClick={handleQuickCreate}
@@ -191,11 +191,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarMenuItem>
           </SidebarMenu>
         </div>
-        <div className="px-4 py-2 text-xs font-medium text-muted-foreground">Platform</div>
+        <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
         <NavMain items={data.platform} id="platform" />
-        <div className="px-4 py-2 text-xs font-medium text-muted-foreground">Tools</div>
+        <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Tools</div>
         <NavMain items={data.navMain} id="tools" />
-        <NavProjects projects={data.projects} />
+        <div className="mt-1">
+          <NavProjects projects={data.projects} />
+        </div>
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
