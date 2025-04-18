@@ -165,7 +165,6 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { state } = useSidebar()
-  const isExpanded = state === "expanded"
   
   const handleQuickCreate = React.useCallback(() => {
     alert("Quick Create button clicked!")
@@ -193,9 +192,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </div>
         <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
         <NavMain items={data.platform} id="platform" />
-        <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Tools</div>
-        <NavMain items={data.navMain} id="tools" />
-        <div className="mt-1">
+        {/* Tools section intentionally removed */}        <div className="mt-1">
           <NavProjects projects={data.projects} />
         </div>
       </SidebarContent>
