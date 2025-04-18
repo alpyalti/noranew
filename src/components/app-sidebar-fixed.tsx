@@ -189,7 +189,7 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
             <>
               <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
               <NavMain items={data.platform} id="platform" isCompact={false} initialOpenItems={initialOpenPlatformItems} />
-              <div className="mt-1">
+              <div className="mt-0">
                 <NavManagement projects={data.projects} hideTitle={false} isCompact={false} />
               </div>
             </>

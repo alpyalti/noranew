@@ -27,7 +27,7 @@ export function NavManagement({
   isCompact?: boolean
 }) {
   return (
-    <div className={hideTitle ? "py-0" : "py-4"}>
+    <div className={hideTitle ? "py-0" : "py-2"}>
       {!hideTitle && (
         <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Management</div>
       )}
