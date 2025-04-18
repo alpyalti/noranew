@@ -16,7 +16,7 @@ import {
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
+import { NavManagement } from "@/components/nav-management"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
@@ -189,7 +189,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
         <NavMain items={data.platform} id="platform" />
         {/* Tools section intentionally removed */}        <div className="mt-1">
-          <NavProjects projects={data.projects} />
+          <NavManagement projects={data.projects} />
         </div>
       </SidebarContent>
       <SidebarFooter>
