@@ -13,6 +13,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
+// Constants
+const BUTTON_HOVER_CLASS = "hover:bg-primary/30 hover:shadow-sm dark:hover:bg-primary/20 transition-all duration-150"
+
 export function NavManagement({
   projects,
   hideTitle = false,
@@ -37,21 +40,21 @@ export function NavManagement({
             {isCompact ? (
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <SidebarMenuButton asChild className={`pl-2 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer`}>
+                  <SidebarMenuButton asChild className={`pl-2 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer ${BUTTON_HOVER_CLASS} group`}>
                     <a href={project.url}>
-                      <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
+                      <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'} group-hover:text-primary transition-colors duration-150`} />
                     </a>
                   </SidebarMenuButton>
                 </TooltipTrigger>
-                <TooltipContent side="right" align="center">
+                <TooltipContent side="right" align="center" className="border border-border shadow-md">
                   {project.name}
                 </TooltipContent>
               </Tooltip>
             ) : (
-              <SidebarMenuButton asChild className={`pl-2 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer`}>
+              <SidebarMenuButton asChild className={`pl-2 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer ${BUTTON_HOVER_CLASS} group`}>
                 <a href={project.url}>
-                  <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'}`} />
-                  <span className="truncate">{project.name}</span>
+                  <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'} group-hover:text-primary transition-colors duration-150`} />
+                  <span className="truncate group-hover:font-medium transition-all duration-150">{project.name}</span>
                 </a>
               </SidebarMenuButton>
             )}
