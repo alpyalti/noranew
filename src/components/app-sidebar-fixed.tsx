@@ -12,6 +12,7 @@ import {
   Palette,
   Settings,
 } from "lucide-react"
+import { usePathname } from "next/navigation"
 
 import { NavMain } from "@/components/nav-main"
 import { NavManagement } from "@/components/nav-management"
@@ -68,16 +69,15 @@ const data = {
       items: [
         {
           title: "Dashboard",
-          url: "#",
-          isActive: true,
+          url: "/dashboard",
         },
         {
           title: "Table",
-          url: "#",
+          url: "/table",
         },
         {
           title: "Campaigns",
-          url: "#",
+          url: "/campaigns",
         },
       ],
     },
@@ -88,11 +88,11 @@ const data = {
       items: [
         {
           title: "Explorer",
-          url: "#",
+          url: "/explorer",
         },
         {
           title: "Creator",
-          url: "#",
+          url: "/creator",
         },
       ],
     },
@@ -100,17 +100,17 @@ const data = {
   projects: [
     {
       name: "Brand Details",
-      url: "#",
+      url: "/brand",
       icon: Palette,
     },
     {
       name: "Team",
-      url: "#",
+      url: "/team",
       icon: Users,
     },
     {
       name: "Brand Settings",
-      url: "#",
+      url: "/settings",
       icon: Settings,
     },
   ],
@@ -120,9 +120,29 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
   const { state } = useSidebar()
   const isExpanded = state === "expanded"
   const [isDarkMode, setIsDarkMode] = React.useState(false)
+  const pathname = usePathname()
   
   // Platform menü öğeleri için başlangıçta açık olacak başlıkları belirle
   const initialOpenPlatformItems = React.useMemo(() => ["Base", "Models"], [])
+
+  // Update platform items based on current URL
+  const platformItems = React.useMemo(() => {
+    return data.platform.map(section => ({
+      ...section,
+      items: section.items?.map(item => ({
+        ...item,
+        isActive: pathname === item.url
+      }))
+    }))
+  }, [pathname])
+
+  // Update project items based on current URL
+  const projectItems = React.useMemo(() => {
+    return data.projects.map(project => ({
+      ...project,
+      isActive: pathname === project.url
+    }))
+  }, [pathname])
   
   React.useEffect(() => {
     // Dark mod tespiti
@@ -188,16 +208,16 @@ export function AppSidebarFixed({ ...props }: React.ComponentProps<typeof Sideba
           {isExpanded ? (
             <>
               <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
-              <NavMain items={data.platform} id="platform" isCompact={false} initialOpenItems={initialOpenPlatformItems} />
+              <NavMain items={platformItems} id="platform" isCompact={false} initialOpenItems={initialOpenPlatformItems} />
               <div className="mt-0">
-                <NavManagement projects={data.projects} hideTitle={false} isCompact={false} />
+                <NavManagement projects={projectItems} hideTitle={false} isCompact={false} />
               </div>
             </>
           ) : (
             <div className="flex flex-col space-y-0 pt-0 mt-0">
-              <NavMain items={data.platform} id="platform" isCompact={true} initialOpenItems={initialOpenPlatformItems} />
+              <NavMain items={platformItems} id="platform" isCompact={true} initialOpenItems={initialOpenPlatformItems} />
               <div className="pt-0 mt-0">
-                <NavManagement projects={data.projects} hideTitle={true} isCompact={true} />
+                <NavManagement projects={projectItems} hideTitle={true} isCompact={true} />
               </div>
             </div>
           )}
