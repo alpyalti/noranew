@@ -13,9 +13,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-// Constants
-const BUTTON_HOVER_CLASS = "hover:bg-primary/30 hover:shadow-sm dark:hover:bg-primary/20 transition-all duration-150"
-
 export function NavManagement({
   projects,
   hideTitle = false,
@@ -25,6 +22,7 @@ export function NavManagement({
     name: string
     url: string
     icon: React.ElementType
+    isActive?: boolean
   }[]
   hideTitle?: boolean
   isCompact?: boolean
@@ -40,21 +38,37 @@ export function NavManagement({
             {isCompact ? (
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <SidebarMenuButton asChild className={`pl-2 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer ${BUTTON_HOVER_CLASS} group`}>
+                  <SidebarMenuButton 
+                    asChild 
+                    isActive={project.isActive}
+                    className={`pl-2 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer ${
+                      project.isActive 
+                        ? 'bg-white text-black font-semibold shadow-sm dark:bg-black dark:text-white' 
+                        : 'hover:bg-muted/20'
+                    }`}
+                  >
                     <a href={project.url}>
-                      <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'} group-hover:text-primary transition-colors duration-150`} />
+                      <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'} ${project.isActive ? 'text-black dark:text-white' : ''}`} />
                     </a>
                   </SidebarMenuButton>
                 </TooltipTrigger>
-                <TooltipContent side="right" align="center" className="border border-border shadow-md">
+                <TooltipContent side="right" align="center">
                   {project.name}
                 </TooltipContent>
               </Tooltip>
             ) : (
-              <SidebarMenuButton asChild className={`pl-2 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer ${BUTTON_HOVER_CLASS} group`}>
+              <SidebarMenuButton 
+                asChild 
+                isActive={project.isActive}
+                className={`pl-2 ${isCompact ? 'pr-1' : 'pr-3'} mx-0 rounded-md w-full cursor-pointer ${
+                  project.isActive 
+                    ? 'bg-white text-black font-semibold shadow-sm dark:bg-black dark:text-white' 
+                    : 'hover:bg-muted/20'
+                }`}
+              >
                 <a href={project.url}>
-                  <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'} group-hover:text-primary transition-colors duration-150`} />
-                  <span className="truncate group-hover:font-medium transition-all duration-150">{project.name}</span>
+                  <project.icon className={`size-4 ${isCompact ? 'mr-0' : 'mr-2'} ${project.isActive ? 'text-black dark:text-white' : ''}`} />
+                  <span className="truncate">{project.name}</span>
                 </a>
               </SidebarMenuButton>
             )}

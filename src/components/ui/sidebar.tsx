@@ -40,6 +40,7 @@ type SidebarContextProps = {
   setOpenMobile: (open: boolean) => void
   isMobile: boolean
   toggleSidebar: () => void
+  isLoaded: boolean
 }
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null)
@@ -68,10 +69,22 @@ function SidebarProvider({
 }) {
   const isMobile = useIsMobile()
   const [openMobile, setOpenMobile] = React.useState(false)
+  const [isLoaded, setIsLoaded] = React.useState(false)
 
-  // This is the internal state of the sidebar.
-  // We use openProp and setOpenProp for control from outside the component.
-  const [_open, _setOpen] = React.useState(defaultOpen)
+  // Initialize state from localStorage if available
+  const [_open, _setOpen] = React.useState(() => {
+    if (typeof window !== "undefined") {
+      const savedState = localStorage.getItem(SIDEBAR_COOKIE_NAME)
+      return savedState ? savedState === "true" : defaultOpen
+    }
+    return defaultOpen
+  })
+  
+  // Set isLoaded to true after the component mounts
+  React.useEffect(() => {
+    setIsLoaded(true)
+  }, [])
+  
   const open = openProp ?? _open
   const setOpen = React.useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
@@ -82,7 +95,12 @@ function SidebarProvider({
         _setOpen(openState)
       }
 
-      // This sets the cookie to keep the sidebar state.
+      // Save to localStorage for persistence across pages
+      if (typeof window !== "undefined") {
+        localStorage.setItem(SIDEBAR_COOKIE_NAME, String(openState))
+      }
+      
+      // Also maintain cookie for backward compatibility
       document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
     },
     [setOpenProp, open]
@@ -122,8 +140,9 @@ function SidebarProvider({
       openMobile,
       setOpenMobile,
       toggleSidebar,
+      isLoaded,
     }),
-    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
+    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar, isLoaded]
   )
 
   return (
@@ -163,7 +182,7 @@ function Sidebar({
   variant?: "sidebar" | "floating" | "inset"
   collapsible?: "offcanvas" | "icon" | "none"
 }) {
-  const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+  const { isMobile, state, openMobile, setOpenMobile, isLoaded } = useSidebar()
 
   if (collapsible === "none") {
     return (
@@ -205,6 +224,11 @@ function Sidebar({
     )
   }
 
+  // Don't show sidebar until state is loaded to prevent flicker
+  if (!isLoaded) {
+    return null;
+  }
+
   return (
     <div
       className="group peer text-sidebar-foreground hidden md:block"
@@ -229,7 +253,8 @@ function Sidebar({
       <div
         data-slot="sidebar-container"
         className={cn(
-          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex",
+          "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width,opacity] duration-300 ease-out md:flex",
+          isLoaded ? "opacity-100" : "opacity-0",
           side === "left"
             ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
             : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -305,11 +330,14 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
 }
 
 function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
+  const { isLoaded } = useSidebar()
+  
   return (
     <main
       data-slot="sidebar-inset"
       className={cn(
-        "bg-background relative flex w-full flex-1 flex-col",
+        "bg-background relative flex w-full flex-1 flex-col transition-opacity duration-300 ease-out",
+        isLoaded ? "opacity-100" : "opacity-0",
         "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
         className
       )}

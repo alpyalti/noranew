@@ -47,10 +47,9 @@ const MENU_CLASS = {
 
 const BUTTON_BASE_CLASS = "mx-0 rounded-md w-full relative cursor-pointer"
 const BUTTON_PADDING_CLASS = (isCompact: boolean) => `pl-2 ${isCompact ? 'pr-2' : 'pr-8'}`
-const BUTTON_ACTIVE_CLASS = "bg-primary/50 dark:bg-primary/30 font-semibold shadow-sm"
-const BUTTON_HOVER_CLASS = "hover:bg-primary/30 hover:shadow-sm dark:hover:bg-primary/20 transition-all duration-150"
+const BUTTON_ACTIVE_CLASS = "bg-white text-black font-semibold shadow-sm dark:bg-black dark:text-white"
 const ICON_CLASS = (isCompact: boolean, isActive: boolean) => 
-  `size-4 ${isCompact ? 'mr-0' : 'mr-2'} ${isActive ? 'text-primary' : ''}`
+  `size-4 ${isCompact ? 'mr-0' : 'mr-2'} ${isActive ? 'text-black dark:text-white' : ''}`
 
 // Components
 const MenuButton: React.FC<{
@@ -61,7 +60,7 @@ const MenuButton: React.FC<{
   isOpen?: boolean
   isExpanded?: boolean
 }> = ({ item, isCompact, hasItems, onClick, isOpen, isExpanded }) => {
-  const buttonClass = `${BUTTON_BASE_CLASS} ${BUTTON_PADDING_CLASS(isCompact)} ${item.isActive ? BUTTON_ACTIVE_CLASS : BUTTON_HOVER_CLASS} group`
+  const buttonClass = `${BUTTON_BASE_CLASS} ${BUTTON_PADDING_CLASS(isCompact)} ${item.isActive ? BUTTON_ACTIVE_CLASS : 'hover:bg-muted/20'}`
   const iconClass = ICON_CLASS(isCompact, !!item.isActive)
 
   const button = (
@@ -71,8 +70,8 @@ const MenuButton: React.FC<{
         onClick={onClick}
         className={buttonClass}
       >
-        <item.icon className={`${iconClass} group-hover:text-primary transition-colors duration-150`} />
-        {!isCompact && <span className="truncate group-hover:font-medium transition-all duration-150">{item.title}</span>}
+        <item.icon className={iconClass} />
+        {!isCompact && <span className="truncate">{item.title}</span>}
       </SidebarMenuButton>
       {hasItems && isExpanded && !isCompact && (
         <div className="absolute right-2 top-[50%] -translate-y-[50%] pointer-events-none">
@@ -98,18 +97,22 @@ const MenuButton: React.FC<{
           <TooltipTrigger asChild>
             {button}
           </TooltipTrigger>
-          <TooltipContent side="right" align="start" className="p-0 w-52 border border-border shadow-lg">
+          <TooltipContent side="right" align="start" className="p-0 w-52">
             <div className="py-1.5">
-              <div className="px-3 py-1.5 text-xs font-medium text-muted-foreground border-b bg-muted/30">{item.title}</div>
+              <div className="mx-2 px-3 py-1.5 text-xs font-medium text-muted-foreground">{item.title}</div>
               <div className="pt-1">
                 {item.items?.map((subItem) => (
                   <a 
                     key={subItem.title} 
                     href={subItem.url}
-                    className={`px-3 py-1.5 text-sm flex items-center hover:bg-primary/20 hover:shadow-sm transition-all duration-150 cursor-pointer ${subItem.isActive ? 'bg-primary/10 font-medium' : ''}`}
+                    className={`mx-2 my-0.5 px-3 py-1.5 text-sm flex items-center rounded-md cursor-pointer ${
+                      subItem.isActive 
+                        ? 'bg-white dark:bg-black text-black dark:text-white font-semibold' 
+                        : 'hover:bg-muted/20'
+                    }`}
                   >
                     <span className="flex-grow">{subItem.title}</span>
-                    {subItem.isActive && <Check className="size-3.5 text-primary ml-2" />}
+                    {subItem.isActive && <Check className="size-3.5 text-black dark:text-white ml-2" />}
                   </a>
                 ))}
               </div>
@@ -124,7 +127,7 @@ const MenuButton: React.FC<{
         <TooltipTrigger asChild>
           {button}
         </TooltipTrigger>
-        <TooltipContent side="right" align="center" className="border border-border shadow-md">
+        <TooltipContent side="right" align="center">
           {item.title}
         </TooltipContent>
       </Tooltip>
