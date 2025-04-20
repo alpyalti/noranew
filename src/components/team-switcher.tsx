@@ -18,6 +18,12 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export function TeamSwitcher({
   teams,
@@ -28,33 +34,52 @@ export function TeamSwitcher({
     plan: string
   }[]
 }) {
-  const { isMobile } = useSidebar()
+  const { isMobile, state } = useSidebar()
+  const isExpanded = state === "expanded"
   const [activeTeam, setActiveTeam] = React.useState(teams[0])
 
   if (!activeTeam) {
     return null
   }
 
+  // Dropdown için gereken buton, tooltip ile sarmallanabilmesi için dışarı çıkarıldı
+  const switcherButton = (
+    <SidebarMenuButton
+      size="lg"
+      className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+    >
+      <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+        <activeTeam.logo className="size-4" />
+      </div>
+      {isExpanded && (
+        <div className="grid flex-1 text-left text-sm leading-tight">
+          <span className="truncate font-semibold">
+            {activeTeam.name}
+          </span>
+          <span className="truncate text-xs">{activeTeam.plan}</span>
+        </div>
+      )}
+      {isExpanded && <ChevronsUpDown className="ml-auto" />}
+    </SidebarMenuButton>
+  );
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-            >
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <activeTeam.logo className="size-4" />
-              </div>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">
+            {!isExpanded ? (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  {switcherButton}
+                </TooltipTrigger>
+                <TooltipContent side="right" align="center">
                   {activeTeam.name}
-                </span>
-                <span className="truncate text-xs">{activeTeam.plan}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto" />
-            </SidebarMenuButton>
+                </TooltipContent>
+              </Tooltip>
+            ) : (
+              switcherButton
+            )}
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"

@@ -17,7 +17,14 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  useSidebar
 } from "@/components/ui/sidebar"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export function NavUser({
   user,
@@ -32,25 +39,46 @@ export function NavUser({
     .split(" ")
     .map((n) => n[0])
     .join("")
+    
+  const { state } = useSidebar()
+  const isExpanded = state === "expanded"
+
+  // Dropdown için gereken buton, tooltip ile sarmallanabilmesi için dışarı çıkarıldı
+  const userButton = (
+    <SidebarMenuButton
+      size="lg"
+      className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+    >
+      <Avatar className="mr-2 h-6 w-6">
+        <AvatarImage src={user.avatar} alt={user.name} />
+        <AvatarFallback>{initials}</AvatarFallback>
+      </Avatar>
+      {isExpanded && (
+        <div className="grid flex-1 text-left text-sm">
+          <span className="truncate font-semibold">{user.name}</span>
+          <span className="truncate text-xs">{user.email}</span>
+        </div>
+      )}
+    </SidebarMenuButton>
+  );
 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-            >
-              <Avatar className="mr-2 h-6 w-6">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback>{initials}</AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm">
-                <span className="truncate font-semibold">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
-              </div>
-            </SidebarMenuButton>
+            {!isExpanded ? (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  {userButton}
+                </TooltipTrigger>
+                <TooltipContent side="right" align="center">
+                  {user.name}
+                </TooltipContent>
+              </Tooltip>
+            ) : (
+              userButton
+            )}
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56" align="end" side="top">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>

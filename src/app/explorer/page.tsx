@@ -230,256 +230,260 @@ export default function ExplorerPage() {
         <SidebarInset className="overflow-hidden">
           <SiteHeader />
           <div className="flex flex-1 flex-col">
-            <div className="@container/main flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {/* Today's Pulse Card */}
-                <Card className="w-full data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
-                  <CardHeader className="flex flex-row items-start justify-between pb-2">
-                    <div className="flex flex-col gap-1">
-                      <div className="flex items-center gap-2">
-                        <div className="cursor-pointer">
-                          <Activity 
-                            className="h-5 w-5 text-green-500" 
-                            style={{ animation: 'doublePulse 3s ease-in-out infinite' }}
-                          />
+            <div className="@container/main flex flex-1 flex-col gap-2">
+              <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+                <div className="px-4 lg:px-6">
+                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {/* Today's Pulse Card */}
+                    <Card className="w-full data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
+                      <CardHeader className="flex flex-row items-start justify-between pb-2">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-2">
+                            <div className="cursor-pointer">
+                              <Activity 
+                                className="h-5 w-5 text-green-500" 
+                                style={{ animation: 'doublePulse 3s ease-in-out infinite' }}
+                              />
+                            </div>
+                            <CardTitle>Today's Pulse</CardTitle>
+                          </div>
+                          <CardDescription className="text-xs pl-7">
+                            Market insights & updates
+                          </CardDescription>
                         </div>
-                        <CardTitle>Today's Pulse</CardTitle>
-                      </div>
-                      <CardDescription className="text-xs pl-7">
-                        Market insights & updates
-                      </CardDescription>
+                        <div className="flex items-center rounded-md border px-2 py-0.5 text-xs font-medium transition-opacity duration-500 text-card-foreground">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                          </svg>
+                          Updated {getTimeAgo(pulseLastUpdate)}
+                        </div>
+                      </CardHeader>
+                      <CardContent className="pt-1">
+                        <div className="divide-y divide-border">
+                          <div className="pb-2">
+                            <div className="flex items-start justify-between">
+                              <h3 className="font-medium text-sm">Market Share Growth in AI Analytics</h3>
+                              <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
+                                <Sparkles className="h-4 w-4" />
+                              </Button>
+                            </div>
+                            <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
+                              <InlineTag>Enterprise</InlineTag> adoption of <InlineTag>AI</InlineTag> analytics solutions shows 28% increase in market penetration. <InlineTag>Predictive</InlineTag> modeling and <InlineTag>real-time</InlineTag> processing capabilities drive significant growth across key industry sectors.
+                            </p>
+                          </div>
+                          
+                          <div className="py-2">
+                            <div className="flex items-start justify-between">
+                              <h3 className="font-medium text-sm">Competitor Platform Enhancement</h3>
+                              <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
+                                <Sparkles className="h-4 w-4" />
+                              </Button>
+                            </div>
+                            <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
+                              <InlineTag className="inline-tag-competitor">DataTech</InlineTag> launches enhanced <InlineTag>ML</InlineTag> capabilities in their analytics suite. New features include predictive modeling and scalable data processing, targeting enterprise-level implementations.
+                            </p>
+                          </div>
+
+                          <div className="pt-2">
+                            <div className="flex items-start justify-between">
+                              <h3 className="font-medium text-sm">Regional Market Dynamics</h3>
+                              <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
+                                <Sparkles className="h-4 w-4" />
+                              </Button>
+                            </div>
+                            <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
+                              <InlineTag>APAC</InlineTag> region shows strongest growth in <InlineTag>AI</InlineTag> analytics adoption, with 45% year-over-year increase. Financial and healthcare sectors lead implementation, focusing on automated decision-making systems.
+                            </p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Overwatch Card */}
+                    <Card className="w-full data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
+                      <CardHeader className="flex flex-row items-start justify-between pb-2">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-2">
+                            <div className="cursor-pointer">
+                              <Crosshair className="h-5 w-5 text-red-500 animate-[pulse_2s_ease-in-out_infinite] scale-110" />
+                            </div>
+                            <CardTitle>Overwatch</CardTitle>
+                          </div>
+                          <CardDescription className="text-xs pl-7">
+                            Competitor activity tracker
+                          </CardDescription>
+                        </div>
+                        <div className="flex items-center rounded-md border px-2 py-0.5 text-xs font-medium transition-opacity duration-500 text-card-foreground">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                          </svg>
+                          Updated {getTimeAgo(overwatchLastUpdate)}
+                        </div>
+                      </CardHeader>
+                      <CardContent className="pt-1">
+                        <div className="divide-y divide-border">
+                          <div className="pb-2">
+                            <div className="flex items-start justify-between">
+                              <h3 className="font-medium text-sm">Strategic Partnership Announcement</h3>
+                              <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
+                                <Sparkles className="h-4 w-4" />
+                              </Button>
+                            </div>
+                            <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
+                              <InlineTag className="inline-tag-competitor">CoreTech</InlineTag> partners with <InlineTag className="inline-tag-competitor">CloudScale</InlineTag> to enhance data processing. Joint development focuses on scalable analytics solutions for enterprise clients, with initial rollout in Q3.
+                            </p>
+                          </div>
+                          
+                          <div className="py-2">
+                            <div className="flex items-start justify-between">
+                              <h3 className="font-medium text-sm">Market Expansion Initiative</h3>
+                              <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
+                                <Sparkles className="h-4 w-4" />
+                              </Button>
+                            </div>
+                            <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
+                              <InlineTag className="inline-tag-competitor">DataFlow</InlineTag> expands into <InlineTag>Asia-Pacific</InlineTag>, establishing Singapore headquarters. New research center focuses on AI development and local market customization, targeting Q4 launch.
+                            </p>
+                          </div>
+
+                          <div className="pt-2">
+                            <div className="flex items-start justify-between">
+                              <h3 className="font-medium text-sm">Product Portfolio Update</h3>
+                              <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
+                                <Sparkles className="h-4 w-4" />
+                              </Button>
+                            </div>
+                            <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
+                              <InlineTag className="inline-tag-competitor">SmartCore</InlineTag> introduces advanced tools in their analytics platform. New features emphasize real-time data processing and scalable dashboards.
+                            </p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Brand Overview and Competitors Column */}
+                    <div className="flex flex-col gap-4 lg:col-span-1">
+                      <Card className="h-[240px] w-full data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
+                        <CardHeader className="pb-0">
+                          <div className="flex items-center justify-between">
+                            <CardTitle>Brand Overview</CardTitle>
+                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                              <Pencil className="h-4 w-4" />
+                            </Button>
+                          </div>
+                          <CardDescription className="pb-0">Brand details and market position</CardDescription>
+                        </CardHeader>
+                        <CardContent className="pt-0">
+                          <div className="space-y-2">
+                            <h3 className="font-semibold truncate">{brandData.name}</h3>
+                            <div className="flex gap-2 flex-wrap">
+                              {brandData.keywords.map((keyword, index) => (
+                                <Badge key={index} variant="outline">{keyword}</Badge>
+                              ))}
+                              <Badge variant="secondary">{brandData.region}</Badge>
+                            </div>
+                            <p className="text-sm text-muted-foreground leading-relaxed">
+                              {"A pioneering force in AI-driven analytics, specializing in transforming complex data into actionable business intelligence. Our innovative solutions empower organizations to make data-driven decisions with confidence.".slice(0, 150)}...
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="h-[240px] w-full data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
+                        <CardHeader className="pb-0">
+                          <div className="flex items-center justify-between">
+                            <CardTitle>Competitors</CardTitle>
+                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                              <Pencil className="h-4 w-4" />
+                            </Button>
+                          </div>
+                          <CardDescription className="pb-0">Key market competitors and their focus areas</CardDescription>
+                        </CardHeader>
+                        <CardContent className="pt-0">
+                          <div className="grid grid-cols-1 gap-1.5">
+                            <div className="flex items-start justify-between gap-2">
+                              <div className="flex items-center gap-1.5 min-w-0">
+                                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-medium">1</div>
+                                <h4 className="font-medium text-[13px] truncate">{competitorData.competitors[0].name}</h4>
+                              </div>
+                              <div className="flex gap-1.5 shrink-0">
+                                <Badge variant="outline" className="text-[10px] h-5 px-1.5">{competitorData.competitors[0].sector}</Badge>
+                                <Badge variant="secondary" className="text-[10px] h-5 px-1.5">{competitorData.competitors[0].region}</Badge>
+                              </div>
+                            </div>
+
+                            <div className="h-px w-full bg-border" />
+
+                            <div className="flex items-start justify-between gap-2">
+                              <div className="flex items-center gap-1.5 min-w-0">
+                                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-medium">2</div>
+                                <h4 className="font-medium text-[13px] truncate">{competitorData.competitors[1].name}</h4>
+                              </div>
+                              <div className="flex gap-1.5 shrink-0">
+                                <Badge variant="outline" className="text-[10px] h-5 px-1.5">{competitorData.competitors[1].sector}</Badge>
+                                <Badge variant="secondary" className="text-[10px] h-5 px-1.5">{competitorData.competitors[1].region}</Badge>
+                              </div>
+                            </div>
+
+                            <div className="h-px w-full bg-border" />
+
+                            <div className="flex items-start justify-between gap-2">
+                              <div className="flex items-center gap-1.5 min-w-0">
+                                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-medium">3</div>
+                                <h4 className="font-medium text-[13px] truncate">DataFlow Inc</h4>
+                              </div>
+                              <div className="flex gap-1.5 shrink-0">
+                                <Badge variant="outline" className="text-[10px] h-5 px-1.5">Data Analytics</Badge>
+                                <Badge variant="secondary" className="text-[10px] h-5 px-1.5">Asia Pacific</Badge>
+                              </div>
+                            </div>
+
+                            <div className="h-px w-full bg-border" />
+
+                            <div className="flex items-start justify-between gap-2">
+                              <div className="flex items-center gap-1.5 min-w-0">
+                                <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-medium">4</div>
+                                <h4 className="font-medium text-[13px] truncate">SmartCore Technologies</h4>
+                              </div>
+                              <div className="flex gap-1.5 shrink-0">
+                                <Badge variant="outline" className="text-[10px] h-5 px-1.5">AI Solutions</Badge>
+                                <Badge variant="secondary" className="text-[10px] h-5 px-1.5">South America</Badge>
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
                     </div>
-                    <div className="flex items-center rounded-md border px-2 py-0.5 text-xs font-medium transition-opacity duration-500 text-card-foreground">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
-                      Updated {getTimeAgo(pulseLastUpdate)}
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-1">
-                    <div className="divide-y divide-border">
-                      <div className="pb-2">
-                        <div className="flex items-start justify-between">
-                          <h3 className="font-medium text-sm">Market Share Growth in AI Analytics</h3>
-                          <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
-                            <Sparkles className="h-4 w-4" />
-                          </Button>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
-                          <InlineTag>Enterprise</InlineTag> adoption of <InlineTag>AI</InlineTag> analytics solutions shows 28% increase in market penetration. <InlineTag>Predictive</InlineTag> modeling and <InlineTag>real-time</InlineTag> processing capabilities drive significant growth across key industry sectors.
-                        </p>
-                      </div>
-                      
-                      <div className="py-2">
-                        <div className="flex items-start justify-between">
-                          <h3 className="font-medium text-sm">Competitor Platform Enhancement</h3>
-                          <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
-                            <Sparkles className="h-4 w-4" />
-                          </Button>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
-                          <InlineTag className="inline-tag-competitor">DataTech</InlineTag> launches enhanced <InlineTag>ML</InlineTag> capabilities in their analytics suite. New features include predictive modeling and scalable data processing, targeting enterprise-level implementations.
-                        </p>
-                      </div>
 
-                      <div className="pt-2">
-                        <div className="flex items-start justify-between">
-                          <h3 className="font-medium text-sm">Regional Market Dynamics</h3>
-                          <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
-                            <Sparkles className="h-4 w-4" />
-                          </Button>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
-                          <InlineTag>APAC</InlineTag> region shows strongest growth in <InlineTag>AI</InlineTag> analytics adoption, with 45% year-over-year increase. Financial and healthcare sectors lead implementation, focusing on automated decision-making systems.
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    {/* Social Media Trends Card */}
+                    <Card className="w-full data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
+                      <CardHeader>
+                        <CardTitle>Social Media Trends</CardTitle>
+                        <CardDescription>
+                          Channel usage comparison by sector
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <RadarChart data={radarChartData} />
+                      </CardContent>
+                    </Card>
 
-                {/* Overwatch Card */}
-                <Card className="w-full data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
-                  <CardHeader className="flex flex-row items-start justify-between pb-2">
-                    <div className="flex flex-col gap-1">
-                      <div className="flex items-center gap-2">
-                        <div className="cursor-pointer">
-                          <Crosshair className="h-5 w-5 text-red-500 animate-[pulse_2s_ease-in-out_infinite] scale-110" />
+                    {/* Follower Growth Card */}
+                    <Card className="w-full md:col-span-2 data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
+                      <CardHeader>
+                        <CardTitle>Follower Growth</CardTitle>
+                        <CardDescription>Daily follower count comparison across platforms</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="h-[300px]">
+                          <AreaChart data={areaChartData} />
                         </div>
-                        <CardTitle>Overwatch</CardTitle>
-                      </div>
-                      <CardDescription className="text-xs pl-7">
-                        Competitor activity tracker
-                      </CardDescription>
-                    </div>
-                    <div className="flex items-center rounded-md border px-2 py-0.5 text-xs font-medium transition-opacity duration-500 text-card-foreground">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
-                      Updated {getTimeAgo(overwatchLastUpdate)}
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-1">
-                    <div className="divide-y divide-border">
-                      <div className="pb-2">
-                        <div className="flex items-start justify-between">
-                          <h3 className="font-medium text-sm">Strategic Partnership Announcement</h3>
-                          <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
-                            <Sparkles className="h-4 w-4" />
-                          </Button>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
-                          <InlineTag className="inline-tag-competitor">CoreTech</InlineTag> partners with <InlineTag className="inline-tag-competitor">CloudScale</InlineTag> to enhance data processing. Joint development focuses on scalable analytics solutions for enterprise clients, with initial rollout in Q3.
-                        </p>
-                      </div>
-                      
-                      <div className="py-2">
-                        <div className="flex items-start justify-between">
-                          <h3 className="font-medium text-sm">Market Expansion Initiative</h3>
-                          <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
-                            <Sparkles className="h-4 w-4" />
-                          </Button>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
-                          <InlineTag className="inline-tag-competitor">DataFlow</InlineTag> expands into <InlineTag>Asia-Pacific</InlineTag>, establishing Singapore headquarters. New research center focuses on AI development and local market customization, targeting Q4 launch.
-                        </p>
-                      </div>
-
-                      <div className="pt-2">
-                        <div className="flex items-start justify-between">
-                          <h3 className="font-medium text-sm">Product Portfolio Update</h3>
-                          <Button variant="ghost" size="icon" className="cursor-pointer -mt-1">
-                            <Sparkles className="h-4 w-4" />
-                          </Button>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-0.5 mb-1.5">
-                          <InlineTag className="inline-tag-competitor">SmartCore</InlineTag> introduces advanced tools in their analytics platform. New features emphasize real-time data processing and scalable dashboards.
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Brand Overview and Competitors Column */}
-                <div className="flex flex-col gap-4 lg:col-span-1">
-                  <Card className="h-[240px] w-full data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
-                    <CardHeader className="pb-0">
-                      <div className="flex items-center justify-between">
-                        <CardTitle>Brand Overview</CardTitle>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <Pencil className="h-4 w-4" />
-                        </Button>
-                      </div>
-                      <CardDescription className="pb-0">Brand details and market position</CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="space-y-2">
-                        <h3 className="font-semibold truncate">{brandData.name}</h3>
-                        <div className="flex gap-2 flex-wrap">
-                          {brandData.keywords.map((keyword, index) => (
-                            <Badge key={index} variant="outline">{keyword}</Badge>
-                          ))}
-                          <Badge variant="secondary">{brandData.region}</Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {"A pioneering force in AI-driven analytics, specializing in transforming complex data into actionable business intelligence. Our innovative solutions empower organizations to make data-driven decisions with confidence.".slice(0, 150)}...
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="h-[240px] w-full data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
-                    <CardHeader className="pb-0">
-                      <div className="flex items-center justify-between">
-                        <CardTitle>Competitors</CardTitle>
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
-                          <Pencil className="h-4 w-4" />
-                        </Button>
-                      </div>
-                      <CardDescription className="pb-0">Key market competitors and their focus areas</CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="grid grid-cols-1 gap-1.5">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="flex items-center gap-1.5 min-w-0">
-                            <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-medium">1</div>
-                            <h4 className="font-medium text-[13px] truncate">{competitorData.competitors[0].name}</h4>
-                          </div>
-                          <div className="flex gap-1.5 shrink-0">
-                            <Badge variant="outline" className="text-[10px] h-5 px-1.5">{competitorData.competitors[0].sector}</Badge>
-                            <Badge variant="secondary" className="text-[10px] h-5 px-1.5">{competitorData.competitors[0].region}</Badge>
-                          </div>
-                        </div>
-
-                        <div className="h-px w-full bg-border" />
-
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="flex items-center gap-1.5 min-w-0">
-                            <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-medium">2</div>
-                            <h4 className="font-medium text-[13px] truncate">{competitorData.competitors[1].name}</h4>
-                          </div>
-                          <div className="flex gap-1.5 shrink-0">
-                            <Badge variant="outline" className="text-[10px] h-5 px-1.5">{competitorData.competitors[1].sector}</Badge>
-                            <Badge variant="secondary" className="text-[10px] h-5 px-1.5">{competitorData.competitors[1].region}</Badge>
-                          </div>
-                        </div>
-
-                        <div className="h-px w-full bg-border" />
-
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="flex items-center gap-1.5 min-w-0">
-                            <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-medium">3</div>
-                            <h4 className="font-medium text-[13px] truncate">DataFlow Inc</h4>
-                          </div>
-                          <div className="flex gap-1.5 shrink-0">
-                            <Badge variant="outline" className="text-[10px] h-5 px-1.5">Data Analytics</Badge>
-                            <Badge variant="secondary" className="text-[10px] h-5 px-1.5">Asia Pacific</Badge>
-                          </div>
-                        </div>
-
-                        <div className="h-px w-full bg-border" />
-
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="flex items-center gap-1.5 min-w-0">
-                            <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-medium">4</div>
-                            <h4 className="font-medium text-[13px] truncate">SmartCore Technologies</h4>
-                          </div>
-                          <div className="flex gap-1.5 shrink-0">
-                            <Badge variant="outline" className="text-[10px] h-5 px-1.5">AI Solutions</Badge>
-                            <Badge variant="secondary" className="text-[10px] h-5 px-1.5">South America</Badge>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                      </CardContent>
+                    </Card>
+                  </div>
                 </div>
-
-                {/* Social Media Trends Card */}
-                <Card className="w-full data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
-                  <CardHeader>
-                    <CardTitle>Social Media Trends</CardTitle>
-                    <CardDescription>
-                      Channel usage comparison by sector
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <RadarChart data={radarChartData} />
-                  </CardContent>
-                </Card>
-
-                {/* Follower Growth Card */}
-                <Card className="w-full md:col-span-2 data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
-                  <CardHeader>
-                    <CardTitle>Follower Growth</CardTitle>
-                    <CardDescription>Daily follower count comparison across platforms</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="h-[300px]">
-                      <AreaChart data={areaChartData} />
-                    </div>
-                  </CardContent>
-                </Card>
               </div>
             </div>
           </div>

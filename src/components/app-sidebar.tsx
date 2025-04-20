@@ -7,12 +7,10 @@
 import * as React from "react"
 import {
   AudioWaveform,
-  BookOpen,
   Bot,
   Command,
   GalleryVerticalEnd,
   PlusCircle,
-  Settings2,
   SquareTerminal,
   Users,
   Palette,
@@ -125,11 +123,69 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { state } = useSidebar()
   const isExpanded = state === "expanded"
+  const [isDarkMode, setIsDarkMode] = React.useState(false)
+  
+  React.useEffect(() => {
+    // Dark mod tespiti
+    const isDark = document.documentElement.classList.contains('dark')
+    setIsDarkMode(isDark)
+    
+    // Dark mod değişikliklerini dinle
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          const isDark = document.documentElement.classList.contains('dark')
+          setIsDarkMode(isDark)
+        }
+      })
+    })
+    
+    observer.observe(document.documentElement, { attributes: true })
+    
+    return () => observer.disconnect()
+  }, [])
   
   const handleQuickCreate = React.useCallback(() => {
     alert("Quick Create button clicked!")
     // Gerçek uygulamada burada bir modal veya form açabilirsiniz
   }, [])
+  
+  // Buton stilleri
+  const buttonStyle = {
+    backgroundColor: isDarkMode ? 'white' : 'black',
+    color: isDarkMode ? 'black' : 'white',
+    padding: '0.375rem 0.75rem',
+    paddingLeft: '1rem',
+    paddingRight: '0.75rem',
+    marginLeft: '0',
+    marginRight: '0',
+    borderRadius: '0.375rem',
+    width: '100%',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    fontWeight: 500,
+    fontSize: '0.875rem'
+  }
+
+  const compactButtonStyle = {
+    ...buttonStyle,
+    padding: '0.375rem',
+    justifyContent: 'center'
+  }
+
+  const handleMouseOver = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.style.backgroundColor = isDarkMode 
+      ? 'rgba(255,255,255,0.9)' 
+      : 'rgba(0,0,0,0.9)'
+  }
+
+  const handleMouseOut = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.style.backgroundColor = isDarkMode 
+      ? 'white' 
+      : 'black'
+  }
   
   return (
     <TooltipProvider delayDuration={300}>
@@ -142,22 +198,26 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenu className="gap-0.5 py-1 px-2">
               <SidebarMenuItem>
                 {isExpanded ? (
-                  <SidebarMenuButton 
+                  <button 
                     onClick={handleQuickCreate}
-                    className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer bg-green-500 text-white hover:bg-green-600"
+                    style={buttonStyle}
+                    onMouseOver={handleMouseOver}
+                    onMouseOut={handleMouseOut}
                   >
                     <PlusCircle className="size-4 mr-2" />
                     <span className="truncate font-medium">Quick Create</span>
-                  </SidebarMenuButton>
+                  </button>
                 ) : (
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <SidebarMenuButton 
+                      <button 
                         onClick={handleQuickCreate}
-                        className="pl-4 pr-3 mx-0 rounded-md w-full cursor-pointer bg-green-500 text-white hover:bg-green-600"
+                        style={compactButtonStyle}
+                        onMouseOver={handleMouseOver}
+                        onMouseOut={handleMouseOut}
                       >
                         <PlusCircle className="size-4" />
-                      </SidebarMenuButton>
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent side="right" align="center">
                       Quick Create
@@ -169,7 +229,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </div>
           {isExpanded ? (
             <>
-              <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Main Menu</div>
+              <div className="px-4 py-1 text-xs font-medium text-muted-foreground">Platform</div>
               <NavMain items={data.platform} id="platform" isCompact={false} />
               <div className="mt-1">
                 <NavManagement projects={data.projects} hideTitle={false} isCompact={false} />
