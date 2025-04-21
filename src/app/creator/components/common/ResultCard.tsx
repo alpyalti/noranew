@@ -1,22 +1,32 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Check, Download, Star } from "lucide-react";
+import { Check, Download, Star, TableIcon } from "lucide-react";
 import { ResultCardProps } from "../../types";
 import { MediaContent } from "./MediaContent";
+
+// Mock video path
+const mockVideo = "https://static.videezy.com/system/resources/previews/000/000/168/original/Record.mp4";
 
 export function ResultCard({ result, onSelect, isSelected }: ResultCardProps) {
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   // Handle video play on hover
   const handleVideoEnter = (e: React.MouseEvent<HTMLVideoElement>) => {
-    e.currentTarget.play();
+    e.currentTarget.play().catch(error => console.log("Video play failed:", error));
   };
 
   // Handle video pause on leave
   const handleVideoLeave = (e: React.MouseEvent<HTMLVideoElement>) => {
     e.currentTarget.pause();
     e.currentTarget.currentTime = 0;
+  };
+
+  // Handle add to table click
+  const handleAddToTable = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    console.log("Add to table:", result.id);
+    // Add your table logic here
   };
 
   return (
@@ -29,7 +39,7 @@ export function ResultCard({ result, onSelect, isSelected }: ResultCardProps) {
       )}>
         <div className="aspect-square bg-muted relative">
           <MediaContent 
-            src={result.type === "video" ? "/path/to/video" : result.thumbnail}
+            src={result.type === "video" ? mockVideo : result.thumbnail}
             type={result.type}
             onMouseEnter={handleVideoEnter}
             onMouseLeave={handleVideoLeave}
@@ -71,6 +81,16 @@ export function ResultCard({ result, onSelect, isSelected }: ResultCardProps) {
                 <Download className="h-4 w-4" />
               </Button>
             </div>
+            
+            <Button 
+              size="sm" 
+              variant="ghost" 
+              className="h-7 px-2 flex items-center gap-1 hover:bg-accent cursor-pointer"
+              onClick={handleAddToTable}
+            >
+              <TableIcon className="h-4 w-4" />
+              <span className="text-xs">Add to table</span>
+            </Button>
           </div>
         </div>
       </div>

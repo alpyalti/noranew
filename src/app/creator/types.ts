@@ -81,7 +81,11 @@ export interface ImageAdsServiceProps {
 }
 
 export interface LinkToIdeaServiceProps {
-  // Props for LinkToIdeaService
+  /** 
+   * This interface is for future props that might be needed.
+   * Currently the component doesn't require any props.
+   */
+  mockData?: string;
 }
 
 export interface ComingSoonServiceProps {

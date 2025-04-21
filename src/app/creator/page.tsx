@@ -973,10 +973,10 @@ export default function CreatorPage() {
               <div className="flex flex-col py-6">
                 <div className="px-6">
                   {/* Main content grid with 3 panels */}
-                  <div className="grid grid-cols-12 gap-6">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-6">
                     
                     {/* Left Panel - AI-Generated Asset */}
-                    <div className="col-span-12 md:col-span-3 lg:col-span-3 flex flex-col gap-4 sticky top-[calc(var(--header-height)+2rem)] h-[calc(100vh-var(--header-height)-10rem)]">
+                    <div className="md:col-span-3 lg:col-span-3 flex flex-col gap-4 md:sticky md:top-[calc(var(--header-height)+2rem)] md:h-[calc(100vh-var(--header-height)-10rem)]">
                       <Card className="flex-1 flex flex-col bg-muted/50">
                         <CardHeader className="pb-2">
                           <CardTitle>AI-Generated Asset</CardTitle>
@@ -1013,7 +1013,7 @@ export default function CreatorPage() {
                           </Tabs>
                         </div>
                         <CardContent className="p-0 pt-0 flex-1 border-t -mt-2 overflow-hidden">
-                          <ScrollArea className="h-[calc(100vh-var(--header-height)-20rem)]">
+                          <ScrollArea className="h-[calc(100vh-var(--header-height)-20rem)] md:h-[calc(100vh-var(--header-height)-20rem)]">
                             <div className="p-4 flex flex-col gap-2.5">
                               {filteredServices.map((service) => (
                                 <ServiceCard 
@@ -1033,7 +1033,7 @@ export default function CreatorPage() {
                     </div>
                     
                     {/* Middle Panel - Content Generation */}
-                    <div className="col-span-12 md:col-span-6 lg:col-span-6 flex flex-col gap-4 overflow-auto min-h-[calc(100vh-var(--header-height)-7rem)]">
+                    <div className="md:col-span-6 lg:col-span-6 flex flex-col gap-4 overflow-auto md:min-h-[calc(100vh-var(--header-height)-7rem)]">
                       <Card className="flex-1 flex flex-col bg-muted/50">
                         <CardHeader className="pb-2 flex flex-row items-center justify-between sticky top-0 backdrop-blur-sm z-10">
                           <div>
@@ -1056,7 +1056,7 @@ export default function CreatorPage() {
                     </div>
                     
                     {/* Right Panel - Archive */}
-                    <div className="col-span-12 md:col-span-3 lg:col-span-3 flex flex-col gap-4 sticky top-[calc(var(--header-height)+2rem)] h-[calc(100vh-var(--header-height)-10rem)]">
+                    <div className="md:col-span-3 lg:col-span-3 flex flex-col gap-4 md:sticky md:top-[calc(var(--header-height)+2rem)] md:h-[calc(100vh-var(--header-height)-10rem)]">
                       <Card className="flex-1 flex flex-col bg-muted/50">
                         <CardHeader className="pb-2">
                           <CardTitle>Archive</CardTitle>

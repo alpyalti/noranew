@@ -11,7 +11,7 @@ export default function ComingSoonService({ service }: ComingSoonServiceProps) {
     <div className="flex flex-col items-center justify-center h-[400px] p-8">
       <div className="bg-primary/10 p-6 rounded-full mb-6">
         {service.icon ? (
-          React.cloneElement(service.icon as React.ReactElement, { 
+          React.cloneElement(service.icon as React.ReactElement<React.SVGProps<SVGSVGElement>>, { 
             className: "h-10 w-10 text-primary" 
           })
         ) : (
@@ -25,7 +25,7 @@ export default function ComingSoonService({ service }: ComingSoonServiceProps) {
         <span className="text-sm font-medium">Coming Soon</span>
       </div>
       <p className="text-sm text-muted-foreground mt-4">
-        We're working hard to bring you this feature. Stay tuned!
+        We&apos;re working hard to bring you this feature. Stay tuned!
       </p>
     </div>
   )

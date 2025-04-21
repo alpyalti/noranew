@@ -165,7 +165,7 @@ export default function ImageAdsService({
         totalSteps={4}
         onToggle={(open) => handleStepToggle(1, open)}
       >
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {[
             { name: "Post Size", width: 1080, height: 1080 },
             { name: "Landscape Size", width: 1200, height: 628 },
@@ -223,273 +223,140 @@ export default function ImageAdsService({
         totalSteps={4}
         onToggle={(open) => handleStepToggle(2, open)}
       >
-        <div className="grid grid-cols-3 gap-4">
-          {/* Upload Option */}
-          <div className="border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center gap-2 hover:border-primary/50 transition-colors cursor-pointer group">
-            <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
-              <Upload className="h-6 w-6 text-primary" />
+        <div className="flex flex-col md:flex-row">
+          <div className="grid grid-cols-3 gap-4 flex-1">
+            <div className="border-2 border-dashed rounded-lg p-4 sm:p-6 flex flex-col items-center justify-center gap-2 hover:border-primary/50 transition-colors cursor-pointer group">
+              <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
+                <Upload className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-sm font-medium text-center">Upload Image</h3>
+              <p className="text-xs text-center text-muted-foreground">
+                Upload your own image
+              </p>
             </div>
-            <h3 className="text-sm font-medium text-center">Upload Image</h3>
-            <p className="text-xs text-center text-muted-foreground">
-              Drag and drop or click to upload
-            </p>
-          </div>
 
-          {/* Archive Option */}
-          <Dialog>
-            <DialogTrigger asChild>
-              <div className="border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center gap-2 hover:border-primary/50 transition-colors cursor-pointer group">
-                <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
-                  <Layers className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-sm font-medium text-center">From Archive</h3>
-                <p className="text-xs text-center text-muted-foreground">
-                  Select from your archived assets
-                </p>
-              </div>
-            </DialogTrigger>
-            <DialogContent className="max-w-4xl h-[80vh]">
-              <DialogHeader>
-                <DialogTitle>Archive</DialogTitle>
-                <DialogDescription>
-                  Browse and filter your archived assets
-                </DialogDescription>
-              </DialogHeader>
-              <div className="flex flex-col gap-4">
-                <Tabs 
-                  defaultValue="all" 
-                  value={activeArchiveFilter} 
-                  onValueChange={(value) => setActiveArchiveFilter(value as ArchiveFilterValue)}
-                  className="w-full"
-                >
-                  <TabsList className="grid grid-cols-3 w-full">
-                    <TabsTrigger value="all" className="cursor-pointer px-1.5">
-                      <div className="flex items-center gap-1">
-                        <Grid2X2 className="h-4 w-4" />
-                        <span className="text-xs">All</span>
-                      </div>
-                    </TabsTrigger>
-                    <TabsTrigger value="favorites" className="cursor-pointer px-1.5">
-                      <div className="flex items-center gap-1">
-                        <Star className="h-4 w-4" />
-                        <span className="text-xs">Favorites</span>
-                      </div>
-                    </TabsTrigger>
-                    <TabsTrigger value="uploads" className="cursor-pointer px-1.5">
-                      <div className="flex items-center gap-1">
-                        <Upload className="h-4 w-4" />
-                        <span className="text-xs">Uploads</span>
-                      </div>
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
-                <ScrollArea 
-                  className="h-[calc(80vh-12rem)] pr-4"
-                  onScrollCapture={handleArchiveScroll}
-                >
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 auto-rows-[160px]">
-                    {filteredArchiveItemsByCategory.slice(0, displayedArchiveItems).map((item) => {
-                      const rowSpan = item.type === "portrait" ? "row-span-2" : "row-span-1";
-                      const isFavorite = item.category === "favorites" || archiveFavorites.includes(item.id);
-                      
-                      // Get service details from aiServices if available
-                      const service = item.serviceId ? aiServices.find(s => s.id === item.serviceId) : null;
-                      
-                      return (
-                        <div
-                          key={item.id}
-                          className={cn(
-                            "relative rounded-lg overflow-hidden cursor-pointer group",
-                            rowSpan
-                          )}
-                        >
-                          <img
-                            src={item.url}
-                            alt={item.title || `Archive item ${item.id}`}
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
-                            loading="lazy"
-                          />
-                          <div className="absolute top-2 left-2">
-                            <Badge variant="secondary" className="text-xs shadow-sm flex items-center gap-1 bg-background/80 backdrop-blur-sm">
-                              {item.category === "uploads" ? (
-                                <>
-                                  <Upload className="h-3 w-3" />
-                                  <span>Uploads</span>
-                                </>
-                              ) : service ? (
-                                <>
-                                  {service.icon}
-                                  <span>{service.title}</span>
-                                </>
-                              ) : item.category === "favorites" ? (
-                                <>
-                                  <Star className="h-3 w-3 fill-current" />
-                                  <span>Favorites</span>
-                                </>
-                              ) : (
-                                <>
-                                  <Sparkles className="h-3 w-3" />
-                                  <span>AI Generated</span>
-                                </>
-                              )}
-                            </Badge>
-                          </div>
-                          <div className="absolute bottom-2 right-2 text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-2 py-1 rounded-md">
-                            {item.date}
-                          </div>
-                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                            <Button variant="secondary" size="sm" className="cursor-pointer">
-                              Select
-                            </Button>
-                            {item.category !== "uploads" && (
-                              <Button 
-                                variant="secondary" 
-                                size="icon" 
-                                className={cn(
-                                  "h-8 w-8 cursor-pointer",
-                                  isFavorite && "text-primary"
-                                )}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  toggleArchiveFavorite(item.id, item.category);
-                                }}
-                              >
-                                <Star className={cn("h-4 w-4", isFavorite && "fill-current")} />
-                              </Button>
-                            )}
-                            <Button variant="secondary" size="icon" className="h-8 w-8 cursor-pointer">
-                              <Download className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </div>
-                      );
-                    })}
+            {/* Archive Option */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <div className="border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center gap-2 hover:border-primary/50 transition-colors cursor-pointer group">
+                  <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
+                    <Layers className="h-6 w-6 text-primary" />
                   </div>
-                  {isLoadingMoreArchive && (
-                    <div className="flex justify-center items-center py-4">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                    </div>
-                  )}
-                  {filteredArchiveItemsByCategory.length === 0 && (
-                    <div className="flex flex-col items-center justify-center py-12 text-center">
-                      <div className="bg-muted/50 p-4 rounded-full mb-3">
-                        {activeArchiveFilter === "uploads" ? (
-                          <Upload className="h-6 w-6 text-muted-foreground" />
-                        ) : activeArchiveFilter === "favorites" ? (
-                          <Star className="h-6 w-6 text-muted-foreground" />
-                        ) : (
-                          <Layers className="h-6 w-6 text-muted-foreground" />
-                        )}
-                      </div>
-                      <h3 className="text-sm font-medium mb-1">No items found</h3>
-                      <p className="text-xs text-muted-foreground max-w-xs">
-                        {activeArchiveFilter === "uploads" 
-                          ? "You haven't uploaded any images yet." 
-                          : activeArchiveFilter === "favorites" 
-                            ? "You haven't favorited any images yet."
-                            : "Your archive is empty."}
-                      </p>
-                    </div>
-                  )}
-                </ScrollArea>
-              </div>
-            </DialogContent>
-          </Dialog>
-
-          {/* Stock Photos Option */}
-          <Dialog>
-            <DialogTrigger asChild>
-              <div className="border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center gap-2 hover:border-primary/50 transition-colors cursor-pointer group">
-                <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
-                  <Search className="h-6 w-6 text-primary" />
+                  <h3 className="text-sm font-medium text-center">From Archive</h3>
+                  <p className="text-xs text-center text-muted-foreground">
+                    Select from your archived assets
+                  </p>
                 </div>
-                <h3 className="text-sm font-medium text-center">Stock Photos</h3>
-                <p className="text-xs text-center text-muted-foreground">
-                  Browse our stock photo library
-                </p>
-              </div>
-            </DialogTrigger>
-            <DialogContent className="max-w-4xl h-[80vh]">
-              <DialogHeader>
-                <DialogTitle>Stock Photos</DialogTitle>
-                <DialogDescription>
-                  Search from our curated collection of stock photos
-                </DialogDescription>
-              </DialogHeader>
-              <div className="flex flex-col gap-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input 
-                    placeholder="Search stock photos..." 
-                    className="pl-9"
-                  />
-                </div>
-                <div className="flex gap-2 flex-wrap">
-                  {mockKeywords.map((keyword) => (
-                    <Button
-                      key={keyword}
-                      variant="outline"
-                      size="sm"
-                      className="text-xs cursor-pointer"
-                    >
-                      {keyword}
-                    </Button>
-                  ))}
-                </div>
-                <ScrollArea 
-                  className="h-[calc(80vh-12rem)] pr-4"
-                  onScrollCapture={handlePhotoScroll}
-                >
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 auto-rows-[160px]">
-                    {mockStockPhotos
-                      .slice(0, displayedPhotos)
-                      .sort((a, b) => b.id - a.id) // Sort by id in descending order (newest first)
-                      .map((photo) => {
-                        // Dynamically determine the row span based on image dimensions
-                        const rowSpan = photo.type === "portrait" ? "row-span-2" : "row-span-1";
-                        const isFavorite = favoriteStockPhotos.includes(photo.id);
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl h-[80vh]">
+                <DialogHeader>
+                  <DialogTitle>Archive</DialogTitle>
+                  <DialogDescription>
+                    Browse and filter your archived assets
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex flex-col gap-4">
+                  <Tabs 
+                    defaultValue="all" 
+                    value={activeArchiveFilter} 
+                    onValueChange={(value) => setActiveArchiveFilter(value as ArchiveFilterValue)}
+                    className="w-full"
+                  >
+                    <TabsList className="grid grid-cols-3 w-full">
+                      <TabsTrigger value="all" className="cursor-pointer px-1.5">
+                        <div className="flex items-center gap-1">
+                          <Grid2X2 className="h-4 w-4" />
+                          <span className="text-xs">All</span>
+                        </div>
+                      </TabsTrigger>
+                      <TabsTrigger value="favorites" className="cursor-pointer px-1.5">
+                        <div className="flex items-center gap-1">
+                          <Star className="h-4 w-4" />
+                          <span className="text-xs">Favorites</span>
+                        </div>
+                      </TabsTrigger>
+                      <TabsTrigger value="uploads" className="cursor-pointer px-1.5">
+                        <div className="flex items-center gap-1">
+                          <Upload className="h-4 w-4" />
+                          <span className="text-xs">Uploads</span>
+                        </div>
+                      </TabsTrigger>
+                    </TabsList>
+                  </Tabs>
+                  <ScrollArea 
+                    className="h-[60vh] max-h-[calc(80vh-14rem)] md:h-[calc(80vh-12rem)] pr-4"
+                    onScrollCapture={handleArchiveScroll}
+                  >
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 auto-rows-[160px]">
+                      {filteredArchiveItemsByCategory.slice(0, displayedArchiveItems).map((item) => {
+                        const rowSpan = item.type === "portrait" ? "row-span-2" : "row-span-1";
+                        const isFavorite = item.category === "favorites" || archiveFavorites.includes(item.id);
+                        
+                        // Get service details from aiServices if available
+                        const service = item.serviceId ? aiServices.find(s => s.id === item.serviceId) : null;
                         
                         return (
                           <div
-                            key={photo.id}
+                            key={item.id}
                             className={cn(
                               "relative rounded-lg overflow-hidden cursor-pointer group",
                               rowSpan
                             )}
                           >
                             <img
-                              src={photo.url}
-                              alt={photo.title || `Stock photo ${photo.id}`}
+                              src={item.url}
+                              alt={item.title || `Archive item ${item.id}`}
                               className="absolute inset-0 w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
                               loading="lazy"
                             />
-                            {photo.author && (
-                              <div className="absolute top-2 left-2 text-xs bg-background/80 backdrop-blur-sm px-2 py-1 rounded text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
-                                {photo.author}
-                              </div>
-                            )}
+                            <div className="absolute top-2 left-2">
+                              <Badge variant="secondary" className="text-xs shadow-sm flex items-center gap-1 bg-background/80 backdrop-blur-sm">
+                                {item.category === "uploads" ? (
+                                  <>
+                                    <Upload className="h-3 w-3" />
+                                    <span>Uploads</span>
+                                  </>
+                                ) : service ? (
+                                  <>
+                                    {service.icon}
+                                    <span>{service.title}</span>
+                                  </>
+                                ) : item.category === "favorites" ? (
+                                  <>
+                                    <Star className="h-3 w-3 fill-current" />
+                                    <span>Favorites</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Sparkles className="h-3 w-3" />
+                                    <span>AI Generated</span>
+                                  </>
+                                )}
+                              </Badge>
+                            </div>
+                            <div className="absolute bottom-2 right-2 text-xs text-muted-foreground bg-background/80 backdrop-blur-sm px-2 py-1 rounded-md">
+                              {item.date}
+                            </div>
                             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                               <Button variant="secondary" size="sm" className="cursor-pointer">
                                 Select
                               </Button>
-                              <Button 
-                                variant="secondary" 
-                                size="icon" 
-                                className={cn(
-                                  "h-8 w-8 cursor-pointer",
-                                  isFavorite && "text-primary"
-                                )}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setFavoriteStockPhotos(prev => 
-                                    prev.includes(photo.id) 
-                                      ? prev.filter(id => id !== photo.id) 
-                                      : [...prev, photo.id]
-                                  );
-                                }}
-                              >
-                                <Star className={cn("h-4 w-4", isFavorite && "fill-current")} />
-                              </Button>
+                              {item.category !== "uploads" && (
+                                <Button 
+                                  variant="secondary" 
+                                  size="icon" 
+                                  className={cn(
+                                    "h-8 w-8 cursor-pointer",
+                                    isFavorite && "text-primary"
+                                  )}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    toggleArchiveFavorite(item.id, item.category);
+                                  }}
+                                >
+                                  <Star className={cn("h-4 w-4", isFavorite && "fill-current")} />
+                                </Button>
+                              )}
                               <Button variant="secondary" size="icon" className="h-8 w-8 cursor-pointer">
                                 <Download className="h-4 w-4" />
                               </Button>
@@ -497,16 +364,150 @@ export default function ImageAdsService({
                           </div>
                         );
                       })}
-                  </div>
-                  {isLoadingMore && (
-                    <div className="flex justify-center items-center py-4">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
                     </div>
-                  )}
-                </ScrollArea>
-              </div>
-            </DialogContent>
-          </Dialog>
+                    {isLoadingMoreArchive && (
+                      <div className="flex justify-center items-center py-4">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                      </div>
+                    )}
+                    {filteredArchiveItemsByCategory.length === 0 && (
+                      <div className="flex flex-col items-center justify-center py-12 text-center">
+                        <div className="bg-muted/50 p-4 rounded-full mb-3">
+                          {activeArchiveFilter === "uploads" ? (
+                            <Upload className="h-6 w-6 text-muted-foreground" />
+                          ) : activeArchiveFilter === "favorites" ? (
+                            <Star className="h-6 w-6 text-muted-foreground" />
+                          ) : (
+                            <Layers className="h-6 w-6 text-muted-foreground" />
+                          )}
+                        </div>
+                        <h3 className="text-sm font-medium mb-1">No items found</h3>
+                        <p className="text-xs text-muted-foreground max-w-xs">
+                          {activeArchiveFilter === "uploads" 
+                            ? "You haven't uploaded any images yet." 
+                            : activeArchiveFilter === "favorites" 
+                              ? "You haven't favorited any images yet."
+                              : "Your archive is empty."}
+                        </p>
+                      </div>
+                    )}
+                  </ScrollArea>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            {/* Stock Photos Option */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <div className="border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center gap-2 hover:border-primary/50 transition-colors cursor-pointer group">
+                  <div className="bg-primary/10 p-4 rounded-full group-hover:bg-primary/20 transition-colors">
+                    <Search className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-sm font-medium text-center">Stock Photos</h3>
+                  <p className="text-xs text-center text-muted-foreground">
+                    Browse our stock photo library
+                  </p>
+                </div>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl h-[80vh]">
+                <DialogHeader>
+                  <DialogTitle>Stock Photos</DialogTitle>
+                  <DialogDescription>
+                    Search from our curated collection of stock photos
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex flex-col gap-4">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input 
+                      placeholder="Search stock photos..." 
+                      className="pl-9"
+                    />
+                  </div>
+                  <div className="flex gap-2 flex-wrap">
+                    {mockKeywords.map((keyword) => (
+                      <Button
+                        key={keyword}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs cursor-pointer"
+                      >
+                        {keyword}
+                      </Button>
+                    ))}
+                  </div>
+                  <ScrollArea 
+                    className="h-[60vh] max-h-[calc(80vh-14rem)] md:h-[calc(80vh-12rem)] pr-4"
+                    onScrollCapture={handlePhotoScroll}
+                  >
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 auto-rows-[160px]">
+                      {mockStockPhotos
+                        .slice(0, displayedPhotos)
+                        .sort((a, b) => b.id - a.id) // Sort by id in descending order (newest first)
+                        .map((photo) => {
+                          // Dynamically determine the row span based on image dimensions
+                          const rowSpan = photo.type === "portrait" ? "row-span-2" : "row-span-1";
+                          const isFavorite = favoriteStockPhotos.includes(photo.id);
+                          
+                          return (
+                            <div
+                              key={photo.id}
+                              className={cn(
+                                "relative rounded-lg overflow-hidden cursor-pointer group",
+                                rowSpan
+                              )}
+                            >
+                              <img
+                                src={photo.url}
+                                alt={photo.title || `Stock photo ${photo.id}`}
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
+                                loading="lazy"
+                              />
+                              {photo.author && (
+                                <div className="absolute top-2 left-2 text-xs bg-background/80 backdrop-blur-sm px-2 py-1 rounded text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+                                  {photo.author}
+                                </div>
+                              )}
+                              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                                <Button variant="secondary" size="sm" className="cursor-pointer">
+                                  Select
+                                </Button>
+                                <Button 
+                                  variant="secondary" 
+                                  size="icon" 
+                                  className={cn(
+                                    "h-8 w-8 cursor-pointer",
+                                    isFavorite && "text-primary"
+                                  )}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setFavoriteStockPhotos(prev => 
+                                      prev.includes(photo.id) 
+                                        ? prev.filter(id => id !== photo.id) 
+                                        : [...prev, photo.id]
+                                    );
+                                  }}
+                                >
+                                  <Star className={cn("h-4 w-4", isFavorite && "fill-current")} />
+                                </Button>
+                                <Button variant="secondary" size="icon" className="h-8 w-8 cursor-pointer">
+                                  <Download className="h-4 w-4" />
+                                </Button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
+                    {isLoadingMore && (
+                      <div className="flex justify-center items-center py-4">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                      </div>
+                    )}
+                  </ScrollArea>
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
         <div className="mt-4 flex justify-center">
           <Button onClick={handleNextStep} className="cursor-pointer group">
@@ -525,7 +526,7 @@ export default function ImageAdsService({
         totalSteps={4}
         onToggle={(open) => handleStepToggle(3, open)}
       >
-        <div className="flex gap-6">
+        <div className="flex flex-col sm:flex-row gap-6">
           <div className="flex-1 space-y-4">
             <div className="space-y-2">
               {showCustomPrompt && (
@@ -624,7 +625,7 @@ export default function ImageAdsService({
         totalSteps={4}
         onToggle={(open) => handleStepToggle(4, open)}
       >
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {mockResults
             .sort((a, b) => b.id - a.id) // Sort by ID in descending order (newest first)
             .map((result) => (

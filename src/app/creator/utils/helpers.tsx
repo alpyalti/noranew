@@ -42,11 +42,11 @@ export function handleInfiniteScroll(
 export function getTypeIcon(type: ContentType): React.ReactNode {
   switch (type) {
     case "image":
-      return <Image className="h-3 w-3" />;
+      return <Image className="h-3 w-3" aria-hidden="true" />;
     case "video":
-      return <VideoIcon className="h-3 w-3" />;
+      return <VideoIcon className="h-3 w-3" aria-hidden="true" />;
     case "text":
-      return <FileText className="h-3 w-3" />;
+      return <FileText className="h-3 w-3" aria-hidden="true" />;
     default:
       return null;
   }

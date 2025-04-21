@@ -16,10 +16,7 @@ import {
 
 // Import CopyButton
 import { CopyButton } from "../utils/CopyButton"
-
-interface LinkToIdeaServiceProps {
-  // Props
-}
+import { LinkToIdeaServiceProps } from "../types"
 
 export default function LinkToIdeaService({}: LinkToIdeaServiceProps) {
   const [linkStepActive, setLinkStepActive] = React.useState(1);

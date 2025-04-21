@@ -1,8 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
-import { Upload, Trash2 } from "lucide-react";
+import { Trash2, Upload } from "lucide-react";
 import { HistoryItem, Service } from "../../types";
 import { MediaContent } from "./MediaContent";
 import { getTypeIcon, truncateText } from "../../utils/helpers";
