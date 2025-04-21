@@ -977,7 +977,7 @@ export default function CreatorPage() {
                     
                     {/* Left Panel - AI-Generated Asset */}
                     <div className="md:col-span-3 lg:col-span-3 flex flex-col gap-4 md:sticky md:top-[calc(var(--header-height)+2rem)] md:h-[calc(100vh-var(--header-height)-10rem)]">
-                      <Card className="flex-1 flex flex-col bg-muted/50">
+                      <Card className="flex-1 flex flex-col data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
                         <CardHeader className="pb-2">
                           <CardTitle>AI-Generated Asset</CardTitle>
                           <CardDescription>Choose from our creative tools</CardDescription>
@@ -1034,7 +1034,7 @@ export default function CreatorPage() {
                     
                     {/* Middle Panel - Content Generation */}
                     <div className="md:col-span-6 lg:col-span-6 flex flex-col gap-4 overflow-auto md:min-h-[calc(100vh-var(--header-height)-7rem)]">
-                      <Card className="flex-1 flex flex-col bg-muted/50">
+                      <Card className="flex-1 flex flex-col data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
                         <CardHeader className="pb-2 flex flex-row items-center justify-between sticky top-0 backdrop-blur-sm z-10">
                           <div>
                             <CardTitle>{selectedService?.title || "Content Creation"}</CardTitle>
@@ -1057,7 +1057,7 @@ export default function CreatorPage() {
                     
                     {/* Right Panel - Archive */}
                     <div className="md:col-span-3 lg:col-span-3 flex flex-col gap-4 md:sticky md:top-[calc(var(--header-height)+2rem)] md:h-[calc(100vh-var(--header-height)-10rem)]">
-                      <Card className="flex-1 flex flex-col bg-muted/50">
+                      <Card className="flex-1 flex flex-col data-[slot=card]:bg-gradient-to-t data-[slot=card]:from-primary/5 data-[slot=card]:to-card dark:data-[slot=card]:bg-card" data-slot="card">
                         <CardHeader className="pb-2">
                           <CardTitle>Archive</CardTitle>
                           <CardDescription>Your recent creations</CardDescription>
