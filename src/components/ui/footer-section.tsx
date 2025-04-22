@@ -45,7 +45,7 @@ function Footerdemo() {
             </form>
             <div className="absolute -right-4 top-0 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
           </div>
-          <div>
+          <div className="text-right">
             <h3 className="mb-4 text-lg font-semibold">Contact Us</h3>
             <address className="space-y-2 text-sm not-italic">
               <div>
@@ -62,7 +62,7 @@ function Footerdemo() {
               </div>
             </address>
           </div>
-          <div>
+          <div className="text-right">
             <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
             <nav className="space-y-2 text-sm">
               <a href="#" className="block transition-colors hover:text-primary">
@@ -82,9 +82,9 @@ function Footerdemo() {
               </a>
             </nav>
           </div>
-          <div className="relative">
+          <div className="relative text-right">
             <h3 className="mb-4 text-lg font-semibold">Follow Us</h3>
-            <div className="mb-6 flex space-x-4">
+            <div className="mb-6 flex space-x-4 justify-end">
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>

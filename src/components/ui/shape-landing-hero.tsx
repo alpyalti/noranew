@@ -36,7 +36,7 @@ function HeroGeometric({
                 delay={0.3}
                 size={400}
                 rotate={12}
-                gradient={isDark ? "from-indigo-500/[0.15]" : "from-indigo-500/[0.08]"}
+                gradient={isDark ? "from-indigo-500/[0.08]" : "from-indigo-500/[0.08]"}
                 className="left-[-10%] md:left-[-5%] top-[10%] md:top-[15%] transform-gpu"
                 isDark={isDark}
             />
@@ -45,7 +45,7 @@ function HeroGeometric({
                 delay={0.5}
                 size={350}
                 rotate={-15}
-                gradient={isDark ? "from-rose-500/[0.15]" : "from-rose-500/[0.08]"}
+                gradient={isDark ? "from-rose-500/[0.04]" : "from-rose-500/[0.08]"}
                 className="right-[-8%] md:right-[-3%] top-[65%] md:top-[70%] transform-gpu"
                 isDark={isDark}
             />
@@ -54,7 +54,7 @@ function HeroGeometric({
                 delay={0.4}
                 size={260}
                 rotate={-8}
-                gradient={isDark ? "from-violet-500/[0.15]" : "from-violet-500/[0.08]"}
+                gradient={isDark ? "from-violet-500/[0.04]" : "from-violet-500/[0.08]"}
                 className="left-[20%] md:left-[15%] bottom-[15%] md:bottom-[20%] transform-gpu"
                 isDark={isDark}
             />
@@ -63,7 +63,7 @@ function HeroGeometric({
                 delay={0.6}
                 size={200}
                 rotate={20}
-                gradient={isDark ? "from-amber-500/[0.15]" : "from-amber-500/[0.08]"}
+                gradient={isDark ? "from-amber-500/[0.04]" : "from-amber-500/[0.08]"}
                 className="right-[20%] md:right-[25%] top-[15%] md:top-[20%] transform-gpu"
                 isDark={isDark}
             />
@@ -72,7 +72,7 @@ function HeroGeometric({
                 delay={0.7}
                 size={150}
                 rotate={-25}
-                gradient={isDark ? "from-cyan-500/[0.15]" : "from-cyan-500/[0.08]"}
+                gradient={isDark ? "from-cyan-500/[0.04]" : "from-cyan-500/[0.08]"}
                 className="left-[20%] md:left-[27%] top-[10%] md:top-[15%] transform-gpu"
                 isDark={isDark}
             />
@@ -104,19 +104,19 @@ function HeroGeometric({
 
     return (
         <div className={cn(
-            "relative min-h-screen w-full flex items-center justify-center overflow-hidden",
-            isDark ? "bg-[#030303]" : "bg-[#f8f9fb]"
+            "relative min-h-screen w-full flex items-center justify-center overflow-hidden transition-colors duration-300",
+            isDark ? "bg-background" : "bg-background"
         )}>
             <div className={cn(
-                "absolute inset-0 blur-3xl",
-                isDark ? "bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05]" 
-                       : "bg-gradient-to-br from-indigo-500/[0.03] via-transparent to-rose-500/[0.03]"
+                "absolute inset-0 blur-3xl opacity-30 transition-opacity duration-300",
+                isDark ? "bg-gradient-to-br from-indigo-500/[0.03] via-transparent to-rose-500/[0.03]" 
+                       : "bg-gradient-to-br from-indigo-500/[0.02] via-transparent to-rose-500/[0.02]"
             )} />
 
             {shapes}
 
-            <div className="relative z-10 container mx-auto px-4 md:px-6 -mt-[30rem]">
-                <div className="max-w-5xl mx-auto text-center">
+            <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-8">
+                <div className="max-w-4xl mx-auto text-center pt-10 md:pt-14">
                     <motion.div
                         custom={0}
                         variants={fadeUpVariants}
@@ -125,10 +125,10 @@ function HeroGeometric({
                         onHoverStart={() => setIsHovered(true)}
                         onHoverEnd={() => setIsHovered(false)}
                         className={cn(
-                            "inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-8 md:mb-12 cursor-pointer transition-colors duration-300",
+                            "inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6 md:mb-8 cursor-pointer transition-all duration-300",
                             isDark 
-                                ? "bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06]" 
-                                : "bg-black/[0.02] border border-black/[0.05] hover:bg-black/[0.04]"
+                                ? "bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] hover:border-white/[0.08]" 
+                                : "bg-black/[0.02] border border-black/[0.03] hover:bg-black/[0.03] hover:border-black/[0.05]"
                         )}
                     >
                         <Sparkles className={cn(
@@ -152,9 +152,9 @@ function HeroGeometric({
                         initial="hidden"
                         animate="visible"
                     >
-                        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 tracking-tight">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 md:mb-10 tracking-tight">
                             <span className={cn(
-                                "bg-clip-text text-transparent",
+                                "bg-clip-text text-transparent inline-block mb-2 md:mb-3",
                                 isDark ? "bg-gradient-to-b from-white to-white/80" : "bg-gradient-to-b from-black to-black/80"
                             )}>
                                 {title1}
@@ -162,7 +162,7 @@ function HeroGeometric({
                             <br />
                             <span
                                 className={cn(
-                                    "bg-clip-text text-transparent",
+                                    "bg-clip-text text-transparent inline-block",
                                     isDark ? "bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300" 
                                           : "bg-gradient-to-r from-indigo-500 via-black/90 to-rose-500"
                                 )}
@@ -177,7 +177,7 @@ function HeroGeometric({
                         variants={fadeUpVariants}
                         initial="hidden"
                         animate="visible"
-                        className="space-y-12"
+                        className="space-y-14"
                     >
                         <p className={cn(
                             "text-base sm:text-lg md:text-xl leading-relaxed font-light tracking-wide max-w-2xl mx-auto px-4",
@@ -208,13 +208,72 @@ function HeroGeometric({
                             </motion.div>
                         </motion.button>
                     </motion.div>
+
+                    {/* Hero Image Section */}
+                    <motion.div
+                        custom={3}
+                        variants={fadeUpVariants}
+                        initial="hidden"
+                        animate="visible"
+                        className="mt-32 relative w-[calc(100vw-8rem)] md:w-[calc(100vw-12rem)] lg:w-[calc(100vw-16rem)] max-w-[1200px] left-[50%] -translate-x-[50%] aspect-[21/9] mb-[-10%]"
+                    >
+                        {/* Blue glow effect */}
+                        <div className={cn(
+                            "absolute left-1/2 -top-5 -translate-x-1/2 -z-10",
+                            isDark ? "opacity-40" : "opacity-100"
+                        )} aria-hidden="true">
+                            <div className="relative">
+                                <div className="absolute inset-0 blur-[100px] will-change-transform">
+                                    <div className="h-[300px] w-[1300px] bg-gradient-to-b from-[#0ea5e9] via-[#6366f1]/50 to-transparent rounded-full" />
+                                </div>
+                                <div className="h-[300px] w-[1300px] bg-gradient-to-b from-[#0ea5e9] via-[#6366f1]/50 to-transparent opacity-50 blur-3xl rounded-full" />
+                            </div>
+                        </div>
+
+                        <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                            {/* Gradient overlay */}
+                            <div className={cn(
+                                "absolute inset-0 z-10",
+                                [
+                                    "bg-gradient-to-t from-background from-20% via-background/95 to-transparent",
+                                    "bg-gradient-to-b from-transparent via-transparent to-background to-90%"
+                                ].join(" ")
+                            )} />
+                            
+                            {/* Border effect */}
+                            <div className={cn(
+                                "absolute inset-0 border-2 rounded-3xl z-20",
+                                isDark 
+                                    ? "border-white/5" 
+                                    : "border-black/5"
+                            )} />
+
+                            {/* The actual image */}
+                            <img
+                                src="https://placehold.co/3840x1640/1a1a1a/ffffff?text=AI-Powered+Marketing+Platform"
+                                alt="Hero section image"
+                                className={cn(
+                                    "w-full h-full object-cover",
+                                    isDark 
+                                        ? "opacity-75" 
+                                        : "opacity-85"
+                                )}
+                            />
+
+                            {/* Bottom fade overlay */}
+                            <div className={cn(
+                                "absolute bottom-0 left-0 right-0 h-[85%] z-30",
+                                "bg-gradient-to-t from-background from-0% via-background/95 via-40% via-background/80 via-60% via-background/40 via-80% to-transparent to-100%"
+                            )} />
+                        </div>
+                    </motion.div>
                 </div>
             </div>
 
+            {/* Bottom gradient overlay for smooth transition */}
             <div className={cn(
-                "absolute inset-0 bg-gradient-to-t pointer-events-none",
-                isDark ? "from-[#030303] via-transparent to-[#030303]/80" 
-                       : "from-[#f8f9fb] via-transparent to-[#f8f9fb]/80"
+                "absolute bottom-0 left-0 right-0 h-64 pointer-events-none",
+                "bg-gradient-to-t from-background from-0% via-background/95 via-40% via-background/80 via-60% via-background/40 via-80% to-transparent to-100%"
             )} />
         </div>
     );

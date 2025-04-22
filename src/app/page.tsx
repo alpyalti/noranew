@@ -18,6 +18,7 @@ import { Faq3 } from "@/components/blocks/faq3";
 import { CTA } from "@/components/ui/call-to-action";
 import { Zap, BarChart, Shield, Users, Code, Sparkles, Lightbulb, Wand2, Camera, BarChart2, Image, Users2, Palette } from "lucide-react";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
+import { TestimonialsSection } from "@/components/blocks/testimonials-with-marquee";
 
 // Counter animation component for the engagement metrics card
 const CounterAnimation = () => {
@@ -96,6 +97,50 @@ const AnimatedListItems = () => (
     <div className="bg-primary/10 p-3 rounded-lg font-medium w-full">New version published</div>
   </>
 );
+
+// Sample testimonials data
+const testimonials = [
+  {
+    text: "Qrea has transformed our marketing strategy. The AI-powered tools are incredibly intuitive and save us hours of work every day.",
+    author: {
+      name: "Sarah Johnson",
+      handle: "Marketing Director at TechCorp",
+      avatar: "https://i.pravatar.cc/150?img=1"
+    }
+  },
+  {
+    text: "The creative assets we generate with Qrea consistently outperform our previous campaigns. It's like having a design team in your pocket.",
+    author: {
+      name: "Michael Chen",
+      handle: "Digital Marketing Lead",
+      avatar: "https://i.pravatar.cc/150?img=2"
+    }
+  },
+  {
+    text: "As a small business owner, Qrea has been a game-changer. We now create professional marketing materials in minutes instead of days.",
+    author: {
+      name: "Emma Davis",
+      handle: "Founder, Bloom Boutique",
+      avatar: "https://i.pravatar.cc/150?img=3"
+    }
+  },
+  {
+    text: "The localization feature is brilliant. We've expanded into new markets with perfectly adapted content, all thanks to Qrea.",
+    author: {
+      name: "Carlos Rodriguez",
+      handle: "Global Marketing Manager",
+      avatar: "https://i.pravatar.cc/150?img=4"
+    }
+  },
+  {
+    text: "Our team's productivity has skyrocketed since we started using Qrea. The collaborative features are especially impressive.",
+    author: {
+      name: "Lisa Zhang",
+      handle: "Creative Director",
+      avatar: "https://i.pravatar.cc/150?img=5"
+    }
+  }
+];
 
 export default function Home() {
   const { setTheme, resolvedTheme } = useTheme();
@@ -265,9 +310,9 @@ export default function Home() {
         </section>
 
         {/* Powerful Features Section */}
-        <section className="container mx-auto px-4 py-24 md:px-6 lg:px-8">
+        <section className="container mx-auto px-4 py-35 md:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">
               Powerful Features
             </h2>
             <p className="text-muted-foreground">
@@ -387,6 +432,13 @@ export default function Home() {
             />
           </div>
         </section>
+
+        {/* Testimonials Section */}
+        <TestimonialsSection
+          title="Loved by marketing teams worldwide"
+          description="See what our customers have to say about their experience with Qrea"
+          testimonials={testimonials}
+        />
 
         {/* Pricing Section */}
         <section className="container mx-auto py-16 px-4 md:px-6 lg:px-8 max-w-6xl" id="pricing">
