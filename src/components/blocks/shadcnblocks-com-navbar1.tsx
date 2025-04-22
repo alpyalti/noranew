@@ -1,5 +1,6 @@
 import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
 import React from "react";
+import { QreaLogo } from "@/components/ui/QreaLogo";
 
 import {
   Accordion,
@@ -35,8 +36,6 @@ interface MenuItem {
 interface Navbar1Props {
   logo?: {
     url: string;
-    src: string;
-    alt: string;
     title: string;
   };
   menu?: MenuItem[];
@@ -58,10 +57,8 @@ interface Navbar1Props {
 
 const Navbar1 = ({
   logo = {
-    url: "https://www.shadcnblocks.com",
-    src: "https://www.shadcnblocks.com/images/block/block-1.svg",
-    alt: "logo",
-    title: "Shadcnblocks.com",
+    url: "/",
+    title: "Qrea",
   },
   menu = [
     { title: "Home", url: "#" },
@@ -151,9 +148,8 @@ const Navbar1 = ({
       <div className="container">
         <nav className="hidden justify-between lg:flex">
           <div className="flex items-center gap-6">
-            <a href={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="w-32 dark:invert" alt={logo.alt} />
-              <span className="text-lg font-semibold">{logo.title}</span>
+            <a href={logo.url} className="flex items-center gap-2 pl-4">
+              <QreaLogo width={100} height={100} />
             </a>
             <div className="flex items-center">
               <NavigationMenu>
@@ -174,9 +170,8 @@ const Navbar1 = ({
         </nav>
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
-            <a href={logo.url} className="flex items-center gap-2">
-              <img src={logo.src} className="w-32 dark:invert" alt={logo.alt} />
-              <span className="text-lg font-semibold">{logo.title}</span>
+            <a href={logo.url} className="flex items-center gap-2 pl-4">
+              <QreaLogo width={100} height={100} />
             </a>
             <Sheet>
               <SheetTrigger asChild>
@@ -187,11 +182,8 @@ const Navbar1 = ({
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2">
-                      <img src={logo.src} className="w-32 dark:invert" alt={logo.alt} />
-                      <span className="text-lg font-semibold">
-                        {logo.title}
-                      </span>
+                    <a href={logo.url} className="flex items-center gap-2 pl-4">
+                      <QreaLogo width={100} height={100} />
                     </a>
                   </SheetTitle>
                 </SheetHeader>
@@ -243,24 +235,24 @@ const renderMenuItem = (item: MenuItem) => {
         </NavigationMenuTrigger>
         <NavigationMenuContent>
           <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-            {item.items.map((subItem) => (
-              <li key={subItem.title}>
+              {item.items.map((subItem) => (
+                <li key={subItem.title}>
                 <NavigationMenuLink
-                  href={subItem.url}
+                    href={subItem.url}
                   className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                >
+                  >
                   <div className="flex items-center gap-2">
                     {subItem.icon}
                     <div className="text-sm font-medium leading-none">
-                      {subItem.title}
-                    </div>
+                        {subItem.title}
+                      </div>
                   </div>
                   <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                    {subItem.description}
-                  </p>
+                          {subItem.description}
+                        </p>
                 </NavigationMenuLink>
-              </li>
-            ))}
+                </li>
+              ))}
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>
@@ -270,10 +262,10 @@ const renderMenuItem = (item: MenuItem) => {
   return (
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
-        href={item.url}
+      href={item.url}
         className="bg-transparent hover:bg-accent px-4 py-2 rounded-md"
-      >
-        {item.title}
+    >
+      {item.title}
       </NavigationMenuLink>
     </NavigationMenuItem>
   );

@@ -16,7 +16,8 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { TextGrid } from "@/components/ui/text-grid";
 import { Faq3 } from "@/components/blocks/faq3";
 import { CTA } from "@/components/ui/call-to-action";
-import { Zap, BarChart, Shield, Users } from "lucide-react";
+import { Zap, BarChart, Shield, Users, Code, Sparkles, Lightbulb, Wand2, Camera, BarChart2, Image, Users2, Palette } from "lucide-react";
+import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 
 // Counter animation component for the engagement metrics card
 const CounterAnimation = () => {
@@ -144,7 +145,7 @@ export default function Home() {
         "24/7 email support"
       ],
       description: "Perfect for small teams getting started",
-      buttonText: "Get Started",
+      buttonText: "Try For Free Now",
       href: "#",
       isPopular: false
     },
@@ -163,7 +164,7 @@ export default function Home() {
         "Team collaboration tools"
       ],
       description: "Best for growing teams and businesses",
-      buttonText: "Get Started",
+      buttonText: "Try For Free Now",
       href: "#",
       isPopular: true
     },
@@ -203,9 +204,7 @@ export default function Home() {
               <ShadcnBlocksComNavbar1 
                 logo={{
                   url: "/",
-                  src: "/logo.svg",
-                  alt: "Logo",
-                  title: ""
+                  title: "Qrea"
                 }}
                 menu={[
                   { title: "Home", url: "/" },
@@ -265,50 +264,102 @@ export default function Home() {
           />
         </section>
 
-        {/* Features Section */}
-        <section className="container mx-auto py-16 px-4 md:px-6 lg:px-8 max-w-6xl" id="features">
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Powerful Features</h2>
-            <p className="text-muted-foreground text-lg">Discover the tools that will transform your workflow</p>
+        {/* Powerful Features Section */}
+        <section className="container mx-auto px-4 py-24 md:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
+              Powerful Features
+            </h2>
+            <p className="text-muted-foreground">
+              Discover the tools and features that make our platform stand out
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <FeatureCard 
-              title="Seamless Integrations" 
-              description="Connect with your favorite tools and services without any friction."
-            >
-              <div className="scale-[1.2]">
-                <OrbitingCircles />
-              </div>
-            </FeatureCard>
-            
-            <FeatureCard 
-              title="Global Localization" 
-              description="Reach your audience in their language with our advanced localization."
-            >
-              <div className="scale-[1.2]">
-                <Globe />
-              </div>
-            </FeatureCard>
-            
-            <FeatureCard 
-              title="Realtime Updates" 
-              description="Stay in sync with the latest changes as they happen across your team."
-            >
-              <div className="scale-[1.2] flex items-center justify-center h-full">
-                <AnimatedList>
-                  <AnimatedListItems />
-                </AnimatedList>
-              </div>
-            </FeatureCard>
-            
-            <FeatureCard 
-              title="Increased Engagement" 
-              description="Watch your metrics soar with our engagement-focused features."
-            >
-              <div className="flex items-center justify-center h-full p-8">
-                <CounterAnimation />
-              </div>
-            </FeatureCard>
+          <div className="mt-16">
+            <BentoGrid className="mx-auto max-w-5xl">
+              {/* Row 1: big - small */}
+              <BentoCard
+                name="One-Click Ad Creation"
+                className="col-span-3 md:col-span-2"
+                background={<div />}
+                Icon={Wand2}
+                description="Launch scroll-stopping ad creatives in seconds — no design skills needed."
+                href="#"
+                cta="Try ad creator"
+              />
+              <BentoCard
+                name="Product Photo & Video Shoots"
+                className="col-span-3 md:col-span-1"
+                background={<div />}
+                Icon={Camera}
+                description="Turn basic product shots into professional photos and videos, effortlessly."
+                href="#"
+                cta="Start shooting"
+              />
+
+              {/* Row 2: small - big */}
+              <BentoCard
+                name="Creative Insights"
+                className="col-span-3 md:col-span-1"
+                background={<div />}
+                Icon={BarChart2}
+                description="Track your top-performing creatives and monitor your competitors' moves."
+                href="#"
+                cta="View analytics"
+              />
+              <BentoCard
+                name="AI-Powered Daily Pulse"
+                className="col-span-3 md:col-span-2"
+                background={<div />}
+                Icon={Sparkles}
+                description="Get fresh content ideas daily — AI scans the internet so you don't have to."
+                href="#"
+                cta="Get insights"
+              />
+
+              {/* Row 3: big - small */}
+              <BentoCard
+                name="Localization"
+                className="col-span-3 md:col-span-2"
+                background={
+                  <div className="absolute right-[-20%] bottom-[-30%] w-[80%] h-[80%] opacity-20">
+                    <Globe />
+                  </div>
+                }
+                Icon={() => null}
+                description="Automatically convert any webpage or social media link into region-specific marketing assets."
+                href="#"
+                cta="Start localizing"
+              />
+              <BentoCard
+                name="Smart Stock Generator"
+                className="col-span-3 md:col-span-1"
+                background={<div />}
+                Icon={Image}
+                description="Find or generate premium, commercially-safe stock images and videos with a prompt."
+                href="#"
+                cta="Generate assets"
+              />
+
+              {/* Row 4: small - big */}
+              <BentoCard
+                name="Collaborative Content Planning"
+                className="col-span-3 md:col-span-1"
+                background={<div />}
+                Icon={Users2}
+                description="Plan, schedule, and manage content together — built for teams."
+                href="#"
+                cta="Start planning"
+              />
+              <BentoCard
+                name="Creative Utility Suite"
+                className="col-span-3 md:col-span-2"
+                background={<div />}
+                Icon={Palette}
+                description="The all-in-one AI toolkit for every creative need"
+                href="#"
+                cta="Explore toolkit"
+              />
+            </BentoGrid>
           </div>
         </section>
 
@@ -343,8 +394,8 @@ export default function Home() {
         </section>
 
         {/* FAQ Section */}
-        <section className="container mx-auto py-16 px-4 md:px-6 lg:px-8 max-w-6xl" id="faq">
-          <div className="text-center space-y-4 mb-6">
+        <section className="container mx-auto py-8 px-4 md:px-6 lg:px-8 max-w-6xl" id="faq">
+          <div className="text-center space-y-4 mb-4">
             <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Frequently Asked Questions</h2>
             <p className="text-muted-foreground text-lg">Everything you need to know about our platform and services</p>
           </div>
@@ -352,7 +403,7 @@ export default function Home() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="container mx-auto pb-8 px-4 md:px-6 lg:px-8 max-w-6xl">
+        <section className="container mx-auto py-4 px-4 md:px-6 lg:px-8 max-w-6xl">
           <CTA />
         </section>
 

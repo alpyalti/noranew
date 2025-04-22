@@ -206,7 +206,7 @@ function HeroGeometric({
                     >
                         <Sparkles className={cn(
                             "h-4 w-4",
-                            isDark ? "text-rose-500/80" : "text-rose-600/80"
+                            isDark ? "text-white/60" : "text-black/60"
                         )} />
                         <AnimatedShinyText
                             className={cn(
@@ -217,17 +217,6 @@ function HeroGeometric({
                         >
                             {badge}
                         </AnimatedShinyText>
-                        <motion.div
-                            variants={arrowVariants}
-                            initial="rest"
-                            animate={isHovered ? "hover" : "rest"}
-                            transition={{ duration: 0.2, ease: "easeInOut" }}
-                        >
-                            <ArrowRight className={cn(
-                                "h-4 w-4",
-                                isDark ? "text-white/60" : "text-black/60"
-                            )} />
-                        </motion.div>
                     </motion.div>
 
                     <motion.div
@@ -281,7 +270,7 @@ function HeroGeometric({
                                     : "bg-black text-white hover:bg-black/90"
                             )}
                         >
-                            Get Started for Free
+                            Try For Free Now
                             <motion.div
                                 variants={buttonArrowVariants}
                                 initial="rest"

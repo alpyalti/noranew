@@ -1,66 +1,37 @@
-"use client";
-
-import { MoveRight, PhoneCall, Zap, ArrowRight, Calendar } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { MoveRight, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
-import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { GridPattern } from "@/components/magicui/grid-pattern";
+import { GridPattern } from "@/components/ui/grid-pattern";
 
 function CTA() {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
-
   return (
-    <div className="w-full py-8 lg:py-16">
+    <div className="w-full py-12 lg:py-16">
       <div className="container mx-auto">
-        <div className="relative flex flex-col text-center bg-muted rounded-md p-4 lg:p-14 gap-8 items-center overflow-hidden">
+        <div className="relative flex flex-col text-center p-4 lg:p-12 gap-8 items-center overflow-hidden border-2 border-gray-200/70 dark:border-gray-700/70 rounded-xl">
+          {/* Grid Pattern */}
           <GridPattern
-            width={30}
-            height={30}
-            x={-1}
-            y={-1}
-            strokeDasharray={"4 2"}
-            className={cn(
-              "absolute inset-0 opacity-40",
-              "[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]",
-              isDark ? "text-white/[0.2]" : "text-black/[0.2]"
-            )}
+            strokeDasharray="2"
+            width={100}
+            height={10}
+            className="absolute inset-0 h-full w-full fill-gray-400/40 stroke-gray-400/40 dark:fill-white/[0.1] dark:stroke-white/[0.1]"
           />
-          <div className="flex flex-col gap-4">
-            <h3 className="text-4xl font-bold tracking-tight sm:text-5xl max-w-xl">
-              Try our platform today!
+          
+          {/* Content */}
+          <div className="relative flex flex-col gap-6">
+            <h3 className="text-4xl md:text-5xl tracking-tighter max-w-xl font-bold">
+              Try Qrea today!
             </h3>
-            <p className="text-muted-foreground text-lg max-w-xl">
+            <p className="text-lg leading-relaxed tracking-tight text-muted-foreground max-w-xl">
               Managing a small business today is already tough. Avoid further
               complications by ditching outdated, tedious trade methods. Our goal
               is to streamline SMB trade, making it easier and faster than ever.
             </p>
           </div>
-          <div className="flex flex-row gap-4">
+          <div className="relative flex flex-row gap-4">
             <Button className="gap-4 cursor-pointer" variant="outline">
-              Set up meeting <Calendar className="w-4 h-4" />
+              Schedule meeting <Calendar className="w-4 h-4" />
             </Button>
-            <Button 
-              className="gap-4 cursor-pointer group"
-              onMouseEnter={() => setIsButtonHovered(true)}
-              onMouseLeave={() => setIsButtonHovered(false)}
-            >
-              Get Started for Free
-              <motion.div
-                variants={{
-                  rest: { x: 0 },
-                  hover: { x: 5 }
-                }}
-                animate={isButtonHovered ? "hover" : "rest"}
-                transition={{ duration: 0.2, ease: "easeInOut" }}
-              >
-                <ArrowRight className="w-4 h-4" />
-              </motion.div>
+            <Button className="group gap-4 cursor-pointer">
+              Try For Free Now <MoveRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Button>
           </div>
         </div>

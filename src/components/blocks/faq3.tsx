@@ -78,9 +78,9 @@ const Faq3 = ({
 }: Faq3Props) => {
   return (
     <section className="py-4">
-      <div className="container space-y-4">
+      <div className="container space-y-8">
         <div className="mx-auto flex max-w-3xl flex-col text-left md:text-center">
-          <h2 className="mb-1 text-3xl font-semibold md:mb-2 lg:mb-3 lg:text-4xl">
+          <h2 className="mb-2 text-3xl font-semibold md:mb-3 lg:mb-4 lg:text-4xl">
             {heading}
           </h2>
           <p className="text-muted-foreground lg:text-lg">{description}</p>
@@ -93,11 +93,11 @@ const Faq3 = ({
           {items.map((item) => (
             <AccordionItem key={item.id} value={item.id}>
               <AccordionTrigger className="transition-opacity duration-200 hover:no-underline hover:opacity-60">
-                <div className="font-medium py-0.5 lg:text-lg">
+                <div className="font-medium py-1 lg:py-1.5 lg:text-lg">
                   {item.question}
                 </div>
               </AccordionTrigger>
-              <AccordionContent className="py-0.5">
+              <AccordionContent className="sm:mb-0.5 lg:mb-1">
                 <div className="text-muted-foreground lg:text-lg">
                   {item.answer}
                 </div>
@@ -106,35 +106,35 @@ const Faq3 = ({
           ))}
         </Accordion>
         {supportHeading && supportDescription && supportButtonText && supportButtonUrl && (
-          <div className="mx-auto flex max-w-4xl flex-col items-center rounded-lg bg-accent p-4 text-center md:rounded-xl md:p-6 lg:p-8">
-            <div className="relative">
-              <Avatar className="absolute mb-4 size-16 origin-bottom -translate-x-[60%] scale-[80%] border md:mb-5">
-                <AvatarImage src="https://shadcnblocks.com/images/block/avatar-2.webp" />
-                <AvatarFallback>SU</AvatarFallback>
-              </Avatar>
-              <Avatar className="absolute mb-4 size-16 origin-bottom translate-x-[60%] scale-[80%] border md:mb-5">
-                <AvatarImage src="https://shadcnblocks.com/images/block/avatar-3.webp" />
-                <AvatarFallback>SU</AvatarFallback>
-              </Avatar>
-              <Avatar className="mb-4 size-16 border md:mb-5">
-                <AvatarImage src="https://shadcnblocks.com/images/block/avatar-1.webp" />
-                <AvatarFallback>SU</AvatarFallback>
-              </Avatar>
-            </div>
-            <h3 className="mb-2 max-w-3xl font-semibold lg:text-lg">
-              {supportHeading}
-            </h3>
-            <p className="mb-8 max-w-3xl text-muted-foreground lg:text-lg">
-              {supportDescription}
-            </p>
-            <div className="flex w-full flex-col justify-center gap-2 sm:flex-row">
-              <Button className="w-full sm:w-auto" asChild>
-                <a href={supportButtonUrl} target="_blank">
-                  {supportButtonText}
-                </a>
-              </Button>
-            </div>
+        <div className="mx-auto flex max-w-4xl flex-col items-center rounded-lg bg-accent p-4 text-center md:rounded-xl md:p-6 lg:p-8">
+          <div className="relative">
+            <Avatar className="absolute mb-4 size-16 origin-bottom -translate-x-[60%] scale-[80%] border md:mb-5">
+              <AvatarImage src="https://shadcnblocks.com/images/block/avatar-2.webp" />
+              <AvatarFallback>SU</AvatarFallback>
+            </Avatar>
+            <Avatar className="absolute mb-4 size-16 origin-bottom translate-x-[60%] scale-[80%] border md:mb-5">
+              <AvatarImage src="https://shadcnblocks.com/images/block/avatar-3.webp" />
+              <AvatarFallback>SU</AvatarFallback>
+            </Avatar>
+            <Avatar className="mb-4 size-16 border md:mb-5">
+              <AvatarImage src="https://shadcnblocks.com/images/block/avatar-1.webp" />
+              <AvatarFallback>SU</AvatarFallback>
+            </Avatar>
           </div>
+          <h3 className="mb-2 max-w-3xl font-semibold lg:text-lg">
+            {supportHeading}
+          </h3>
+          <p className="mb-8 max-w-3xl text-muted-foreground lg:text-lg">
+            {supportDescription}
+          </p>
+          <div className="flex w-full flex-col justify-center gap-2 sm:flex-row">
+            <Button className="w-full sm:w-auto" asChild>
+              <a href={supportButtonUrl} target="_blank">
+                {supportButtonText}
+              </a>
+            </Button>
+          </div>
+        </div>
         )}
       </div>
     </section>
