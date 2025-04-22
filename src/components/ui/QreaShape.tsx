@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { memo } from "react";
 
 interface QreaShapeProps {
     className?: string;
@@ -10,7 +11,7 @@ interface QreaShapeProps {
     isDark?: boolean;
 }
 
-export function QreaShape({
+const QreaShape = memo(function QreaShape({
     className,
     delay = 0,
     size = 260,
@@ -29,6 +30,7 @@ export function QreaShape({
     };
 
     const gradientId = `gradient-${rotate}-${delay}`.replace(/\./g, "");
+    const color = getColorFromGradient();
     
     return (
         <motion.div
@@ -48,7 +50,7 @@ export function QreaShape({
                 ease: [0.23, 0.86, 0.39, 0.96],
                 opacity: { duration: 1.2 },
             }}
-            className={cn("absolute", className)}
+            className={cn("absolute will-change-transform", className)}
             style={{
                 width: size,
                 height: size,
@@ -69,15 +71,18 @@ export function QreaShape({
                     viewBox="0 0 259.66 259.67"
                     className="w-full h-full"
                     style={{
-                        filter: isDark ? "drop-shadow(0 0 20px rgba(255,255,255,0.1))" : "drop-shadow(0 0 20px rgba(0,0,0,0.05))"
+                        filter: isDark 
+                            ? "drop-shadow(0 0 35px rgba(255,255,255,0.3)) drop-shadow(0 0 15px rgba(255,255,255,0.2))" 
+                            : "drop-shadow(0 0 35px rgba(0,0,0,0.15)) drop-shadow(0 0 15px rgba(0,0,0,0.1))",
+                        willChange: "filter"
                     }}
                 >
                     <defs>
                         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop 
                                 offset="0%" 
-                                stopColor={getColorFromGradient()} 
-                                stopOpacity={isDark ? "0.15" : "0.08"} 
+                                stopColor={color}
+                                stopOpacity={isDark ? "0.3" : "0.2"} 
                             />
                             <stop offset="100%" stopColor="transparent" />
                         </linearGradient>
@@ -91,4 +96,6 @@ export function QreaShape({
             </motion.div>
         </motion.div>
     );
-} 
+});
+
+export { QreaShape }; 

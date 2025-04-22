@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 import { QreaShape } from "./QreaShape";
+import React from "react";
 
 function HeroGeometric({
     badge = "AI-Powered Complete Marketing",
@@ -27,6 +28,56 @@ function HeroGeometric({
     useEffect(() => {
         setMounted(true);
     }, []);
+
+    // Memoize shapes to prevent re-renders
+    const shapes = React.useMemo(() => (
+        <div className="absolute inset-0 overflow-hidden">
+            <QreaShape
+                delay={0.3}
+                size={400}
+                rotate={12}
+                gradient={isDark ? "from-indigo-500/[0.15]" : "from-indigo-500/[0.08]"}
+                className="left-[-10%] md:left-[-5%] top-[10%] md:top-[15%] transform-gpu"
+                isDark={isDark}
+            />
+
+            <QreaShape
+                delay={0.5}
+                size={350}
+                rotate={-15}
+                gradient={isDark ? "from-rose-500/[0.15]" : "from-rose-500/[0.08]"}
+                className="right-[-8%] md:right-[-3%] top-[65%] md:top-[70%] transform-gpu"
+                isDark={isDark}
+            />
+
+            <QreaShape
+                delay={0.4}
+                size={260}
+                rotate={-8}
+                gradient={isDark ? "from-violet-500/[0.15]" : "from-violet-500/[0.08]"}
+                className="left-[20%] md:left-[15%] bottom-[15%] md:bottom-[20%] transform-gpu"
+                isDark={isDark}
+            />
+
+            <QreaShape
+                delay={0.6}
+                size={200}
+                rotate={20}
+                gradient={isDark ? "from-amber-500/[0.15]" : "from-amber-500/[0.08]"}
+                className="right-[20%] md:right-[25%] top-[15%] md:top-[20%] transform-gpu"
+                isDark={isDark}
+            />
+
+            <QreaShape
+                delay={0.7}
+                size={150}
+                rotate={-25}
+                gradient={isDark ? "from-cyan-500/[0.15]" : "from-cyan-500/[0.08]"}
+                className="left-[20%] md:left-[27%] top-[10%] md:top-[15%] transform-gpu"
+                isDark={isDark}
+            />
+        </div>
+    ), [isDark]);
     
     const fadeUpVariants = {
         hidden: { opacity: 0, y: 30 },
@@ -62,52 +113,7 @@ function HeroGeometric({
                        : "bg-gradient-to-br from-indigo-500/[0.03] via-transparent to-rose-500/[0.03]"
             )} />
 
-            <div className="absolute inset-0 overflow-hidden">
-                <QreaShape
-                    delay={0.3}
-                    size={400}
-                    rotate={12}
-                    gradient={isDark ? "from-indigo-500/[0.15]" : "from-indigo-500/[0.08]"}
-                    className="left-[-10%] md:left-[-5%] top-[10%] md:top-[15%] transform-gpu"
-                    isDark={isDark}
-                />
-
-                <QreaShape
-                    delay={0.5}
-                    size={350}
-                    rotate={-15}
-                    gradient={isDark ? "from-rose-500/[0.15]" : "from-rose-500/[0.08]"}
-                    className="right-[-8%] md:right-[-3%] top-[65%] md:top-[70%] transform-gpu"
-                    isDark={isDark}
-                />
-
-                <QreaShape
-                    delay={0.4}
-                    size={260}
-                    rotate={-8}
-                    gradient={isDark ? "from-violet-500/[0.15]" : "from-violet-500/[0.08]"}
-                    className="left-[25%] md:left-[30%] bottom-[20%] md:bottom-[25%] transform-gpu"
-                    isDark={isDark}
-                />
-
-                <QreaShape
-                    delay={0.6}
-                    size={200}
-                    rotate={20}
-                    gradient={isDark ? "from-amber-500/[0.15]" : "from-amber-500/[0.08]"}
-                    className="right-[25%] md:right-[30%] top-[20%] md:top-[25%] transform-gpu"
-                    isDark={isDark}
-                />
-
-                <QreaShape
-                    delay={0.7}
-                    size={150}
-                    rotate={-25}
-                    gradient={isDark ? "from-cyan-500/[0.15]" : "from-cyan-500/[0.08]"}
-                    className="left-[35%] md:left-[40%] top-[15%] md:top-[20%] transform-gpu"
-                    isDark={isDark}
-                />
-            </div>
+            {shapes}
 
             <div className="relative z-10 container mx-auto px-4 md:px-6 -mt-[30rem]">
                 <div className="max-w-5xl mx-auto text-center">
