@@ -68,7 +68,7 @@ export function TestimonialsSection({
                     key={`set2-${i}`}
                     {...testimonial}
                   />
-                ))}
+              ))}
               </div>
             </div>
           </div>
