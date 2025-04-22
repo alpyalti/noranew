@@ -11,6 +11,11 @@ import {
   Users,
   Palette,
   Settings,
+  LayoutDashboard,
+  Compass,
+  Image,
+  Building2,
+  TableIcon,
 } from "lucide-react"
 import { usePathname } from "next/navigation"
 
@@ -101,7 +106,7 @@ const data = {
     {
       name: "Brand Details",
       url: "/brand",
-      icon: Palette,
+      icon: Building2,
     },
     {
       name: "Team",
