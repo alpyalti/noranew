@@ -1,18 +1,21 @@
-import { MoveRight, Calendar } from "lucide-react";
+import { MoveRight, Calendar, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GridPattern } from "@/components/ui/grid-pattern";
+import { useTheme } from "next-themes";
 
 function CTA() {
+  const { resolvedTheme } = useTheme();
+
   return (
     <div className="w-full py-12 lg:py-16">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="relative flex flex-col text-center p-4 lg:p-12 gap-8 items-center overflow-hidden border-2 border-gray-200/70 dark:border-gray-700/70 rounded-xl">
+        <div className="relative flex flex-col text-center p-4 lg:p-12 gap-8 items-center overflow-hidden rounded-xl bg-background/50">
           {/* Grid Pattern */}
           <GridPattern
-            strokeDasharray="2"
-            width={100}
-            height={10}
-            className="absolute inset-0 h-full w-full fill-gray-400/40 stroke-gray-400/40 dark:fill-white/[0.1] dark:stroke-white/[0.1]"
+            size={32}
+            color={resolvedTheme === 'dark' ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)'}
+            opacity={resolvedTheme === 'dark' ? 0.5 : 0.3}
+            className="absolute inset-0 h-full w-full [mask-image:radial-gradient(white,transparent_85%)] dark:[mask-image:radial-gradient(white,transparent_70%)]"
           />
           
           {/* Content */}
@@ -23,12 +26,12 @@ function CTA() {
             <p className="text-lg leading-relaxed tracking-tight text-muted-foreground max-w-3xl">
               Managing a small business today is already tough. Avoid further
               complications by ditching outdated, tedious trade methods. Our goal
-              is to streamline SMB trade, making it easier and faster than ever.
+              is to streamline marketing, making it easier and faster than ever.
             </p>
           </div>
           <div className="relative flex flex-row gap-4">
             <Button className="gap-4 cursor-pointer" variant="outline">
-              Schedule meeting <Calendar className="w-4 h-4" />
+              Contact Us
             </Button>
             <Button className="group gap-4 cursor-pointer">
               Try For Free Now <MoveRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

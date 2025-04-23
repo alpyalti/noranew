@@ -22,6 +22,7 @@ interface PricingPlan {
   buttonText: string;
   href: string;
   isPopular: boolean;
+  pricePrefix?: string;
 }
 
 interface PricingProps {
@@ -143,32 +144,37 @@ export function Pricing({
               <p className="text-base font-semibold text-muted-foreground">
                 {plan.name}
               </p>
-              <div className="mt-6 flex items-center justify-center gap-x-2">
-                <span className="text-5xl font-bold tracking-tight text-foreground">
-                  <NumberFlow
-                    value={
-                      isMonthly ? Number(plan.price) : Number(plan.yearlyPrice)
-                    }
-                    format={{
-                      style: "currency",
-                      currency: "USD",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 0,
-                    }}
-                    formatter={(value) => `$${value}`}
-                    transformTiming={{
-                      duration: 500,
-                      easing: "ease-out",
-                    }}
-                    willChange
-                    className="font-variant-numeric: tabular-nums"
-                  />
-                </span>
-                {plan.period !== "Next 3 months" && (
-                  <span className="text-sm font-semibold leading-6 tracking-wide text-muted-foreground">
-                    / {plan.period}
+              <div className="mt-6 flex flex-col items-center justify-center">
+                {plan.pricePrefix && (
+                  <span className="text-xs leading-5 text-muted-foreground mb-1">
+                    {plan.pricePrefix}
                   </span>
                 )}
+                <div className="flex items-center justify-center gap-x-2">
+                  <span className="text-5xl font-bold tracking-tight text-foreground">
+                    <NumberFlow
+                      value={isMonthly ? Number(plan.price) : Number(plan.yearlyPrice)}
+                      format={{
+                        style: "currency",
+                        currency: "USD",
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      }}
+                      formatter={(value) => `$${value}`}
+                      transformTiming={{
+                        duration: 500,
+                        easing: "ease-out",
+                      }}
+                      willChange
+                      className="font-variant-numeric: tabular-nums"
+                    />
+                  </span>
+                  {plan.period !== "Next 3 months" && (
+                    <span className="text-sm font-semibold leading-6 tracking-wide text-muted-foreground">
+                      / {plan.period}
+                    </span>
+                  )}
+                </div>
               </div>
 
               <p className="text-xs leading-5 text-muted-foreground">

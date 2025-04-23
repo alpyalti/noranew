@@ -16,9 +16,14 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { TextGrid } from "@/components/ui/text-grid";
 import { Faq3 } from "@/components/blocks/faq3";
 import { CTA } from "@/components/ui/call-to-action";
-import { Zap, BarChart, Shield, Users, Code, Sparkles, Lightbulb, Wand2, Camera, BarChart2, Image, Users2, Palette } from "lucide-react";
+import { Zap, BarChart, Shield, Users, Code, Sparkles, Lightbulb, Wand2, Camera, BarChart2, Image, Users2, Palette, TrendingUp } from "lucide-react";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { TestimonialsSection } from "@/components/blocks/testimonials-with-marquee";
+import { ConversionScoreChart } from "@/components/ui/conversion-score-chart";
+import { GridPattern } from "@/components/ui/grid-pattern";
+import { RadialScoreChart } from "@/components/ui/radial-score-chart";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { PartnerLogos } from "@/components/ui/partner-logos";
 
 // Counter animation component for the engagement metrics card
 const CounterAnimation = () => {
@@ -67,23 +72,6 @@ const FeatureCard = ({ title, description, children }: {
         <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
         <p className="text-white/80 text-sm">{description}</p>
       </div>
-    </div>
-  );
-};
-
-// Step component for the how-it-works section
-const Step = ({ number, title, description }: {
-  number: string;
-  title: string;
-  description: string;
-}) => {
-  return (
-    <div className="flex flex-col items-center md:items-start max-w-md mx-auto">
-      <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl mb-4">
-        {number}
-      </div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-muted-foreground text-center md:text-left">{description}</p>
     </div>
   );
 };
@@ -154,24 +142,36 @@ export default function Home() {
   // FAQ items
   const faqItems = [
     {
-      question: "How does the platform work?",
-      answer: "Our platform provides a seamless integration of various tools and services, allowing you to manage your content efficiently. Simply sign up, set up your preferences, and start leveraging our powerful features."
+      question: "What is a \"Download\" on Qrea?",
+      answer: "A download is used when you save a generated creative (image, video, or text) to your device. Each plan includes a set number of download credits, which refresh monthly."
     },
     {
-      question: "Is there a free trial available?",
-      answer: "Yes, we offer a 14-day free trial with access to all features so you can experience the full potential of our platform before committing to a subscription."
+      question: "What are \"Brands\" in Qrea?",
+      answer: "Brands let you save your brand details and assets — such as descriptions, target audience, brand logo and colours — so that every creative you generate is automatically tailored to your brand identity."
     },
     {
-      question: "Can I upgrade or downgrade my plan later?",
-      answer: "Absolutely! You can easily switch between plans at any time. When upgrading, the new features will be immediately available. When downgrading, changes will take effect on your next billing cycle."
+      question: "What does \"Unlimited Generations\" mean?",
+      answer: "You can generate as many creatives as you want, anytime. Downloads are only used when you choose to export a creative."
     },
     {
-      question: "What kind of support do you offer?",
-      answer: "We provide 24/7 customer support via chat, email, and phone for all paid plans. Our free plan includes email support with a 48-hour response time."
+      question: "What are \"Unlimited Free Stock Images\"?",
+      answer: "With Qrea, you get access to over 100 million royalty-free stock images — included in every plan, at no extra cost."
     },
     {
-      question: "How secure is my data on your platform?",
-      answer: "Security is our top priority. We use industry-standard encryption, regular security audits, and strict access controls to ensure your data remains safe and protected at all times."
+      question: "What is \"AI Prediction\"?",
+      answer: "Each creative you generate comes with a real-time Conversion Score, predicting its performance before you publish — powered by Qrea's AI models trained on real campaign data."
+    },
+    {
+      question: "Can I change my plan anytime?",
+      answer: "Yes, you can upgrade or downgrade your plan anytime. Your new billing cycle will begin immediately, and any unused download credits will carry over."
+    },
+    {
+      question: "What is your refund policy?",
+      answer: "We offer refunds within 7 days (monthly plans) or 30 days (annual plans), as long as no creatives have been generated or downloaded. Contact us at support@qrea.ai to request a refund."
+    },
+    {
+      question: "Can I use Qrea-generated content for commercial purposes?",
+      answer: "Absolutely. All creatives generated through Qrea — including AI visuals, stock images, and text — are commercially safe and ready to use in your marketing campaigns."
     }
   ];
 
@@ -179,15 +179,16 @@ export default function Home() {
   const pricingPlans = [
     {
       name: "Starter",
-      price: "29",
-      yearlyPrice: "290",
+      price: "25",
+      yearlyPrice: "20",
       period: "month",
       features: [
-        "5 team members",
-        "10 projects",
-        "5GB storage",
-        "Basic analytics",
-        "24/7 email support"
+        "10 Downloads",
+        "1 Brand",
+        "Limited Qrea AI Tools",
+        "Unlimited Generation",
+        "Unlimited Stock Photos",
+        "2 Team Members"
       ],
       description: "Perfect for small teams getting started",
       buttonText: "Try For Free Now",
@@ -196,17 +197,18 @@ export default function Home() {
     },
     {
       name: "Pro",
-      price: "79",
-      yearlyPrice: "790",
+      price: "240",
+      yearlyPrice: "200",
       period: "month",
       features: [
-        "Unlimited team members",
-        "Unlimited projects",
-        "50GB storage",
-        "Advanced analytics",
-        "24/7 priority support",
-        "Custom integrations",
-        "Team collaboration tools"
+        "100 Downloads",
+        "3 Brands",
+        "Unlimited Generation",
+        "Unlimited Stock Photos",
+        "All Qrea AI Tools",
+        "5 Team Members",
+        "Pro Features",
+        "Premium Support"
       ],
       description: "Best for growing teams and businesses",
       buttonText: "Try For Free Now",
@@ -215,22 +217,24 @@ export default function Home() {
     },
     {
       name: "Enterprise",
-      price: "199",
-      yearlyPrice: "1990",
+      price: "840",
+      yearlyPrice: "700",
       period: "month",
       features: [
-        "Everything in Pro",
-        "Unlimited storage",
-        "Enterprise-grade security",
-        "Custom reporting",
-        "Dedicated account manager",
-        "SLA guarantees",
-        "Training sessions"
+        "Unlimited Downloads",
+        "Unlimited Brands",
+        "Unlimited Generation",
+        "Unlimited Stock Photos",
+        "All Qrea AI Tools",
+        "All features in Pro Package",
+        "Unlimited Team Members",
+        "Done-for-You Creative Service"
       ],
       description: "For large organizations with specific needs",
       buttonText: "Contact Sales",
       href: "#",
-      isPopular: false
+      isPopular: false,
+      pricePrefix: "Starts from"
     }
   ];
 
@@ -308,6 +312,9 @@ export default function Home() {
             title2="Potential With Qrea"
           />
         </section>
+
+        {/* Partner Logos Section */}
+        <PartnerLogos />
 
         {/* Powerful Features Section */}
         <section className="container mx-auto px-4 py-35 md:px-6 lg:px-8">
@@ -409,27 +416,76 @@ export default function Home() {
         </section>
 
         {/* How It Works Section */}
-        <section className="container mx-auto py-16 px-4 md:px-6 lg:px-8 max-w-6xl">
+        <section className="container mx-auto py-16 px-4 md:px-6 lg:px-8 max-w-5xl">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">How It Works</h2>
-            <p className="text-muted-foreground text-lg">Get started in three simple steps</p>
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">How it works?</h2>
+            <p className="text-lg text-muted-foreground">
+              Let AI do the heavy lifting — so you can focus on results.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <Step 
-              number="1" 
-              title="Sign Up" 
-              description="Create your account in seconds and get immediate access to our platform."
-            />
-            <Step 
-              number="2" 
-              title="Configure" 
-              description="Set up your preferences and integrate with your existing tools and workflows."
-            />
-            <Step 
-              number="3" 
-              title="Grow" 
-              description="Leverage our powerful features to scale your operations and achieve your goals."
-            />
+
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
+            <div className="space-y-8 lg:w-1/2">
+              <p className="text-lg text-muted-foreground">
+                Create scroll-stopping banners, videos, texts, and product visuals in seconds. Boost conversions by up to 20x with AI-optimized, on-brand ad content.
+              </p>
+
+              <div className="space-y-4">
+                <div className="text-lg text-muted-foreground flex items-center">
+                  <span className="mr-2 text-xl">•</span>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <span className="border-b border-dashed border-muted-foreground cursor-help">Conversion Score</span>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <span>AI predicts your creative's performance before you publish, helping you make data-driven decisions.</span>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>: AI predicts your creative's impact
+                </div>
+                <div className="text-lg text-muted-foreground flex items-center">
+                  <span className="mr-2 text-xl">•</span>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <span className="border-b border-dashed border-muted-foreground cursor-help">High-ROI</span>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <span>Our AI optimizes your creatives for maximum return on investment, based on real campaign data.</span>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider> creatives in seconds
+                </div>
+                <div className="text-lg text-muted-foreground flex items-center">
+                  <span className="mr-2 text-xl">•</span>
+                  Fully customizable & <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <span className="border-b border-dashed border-muted-foreground cursor-help">platform-ready</span>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <span>Your creatives are automatically formatted for all major platforms, ready to publish instantly.</span>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+                <div className="text-lg text-muted-foreground flex items-center">
+                  <span className="mr-2 text-xl">•</span>
+                  Built to scale with your team
+                </div>
+              </div>
+            </div>
+
+            <div className="relative lg:w-1/2">
+              <div className="relative rounded-xl overflow-hidden aspect-[4/3]">
+                <img
+                  src={resolvedTheme === "dark" ? "/black.png" : "/white2.png"}
+                  alt="AI-powered marketing platform"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
@@ -450,8 +506,16 @@ export default function Home() {
           <div className="text-center space-y-4 mb-4">
             <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Frequently Asked Questions</h2>
             <p className="text-muted-foreground text-lg">Everything you need to know about our platform and services</p>
-        </div>
-          <Faq3 heading="" description="" />
+          </div>
+          <Faq3 
+            heading="" 
+            description="" 
+            items={faqItems.map((item, index) => ({
+              id: `faq-${index + 1}`,
+              question: item.question,
+              answer: item.answer
+            }))}
+          />
         </section>
 
         {/* Call to Action Section */}

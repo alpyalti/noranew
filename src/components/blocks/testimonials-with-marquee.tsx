@@ -25,13 +25,13 @@ export function TestimonialsSection({
       "container mx-auto px-4 md:px-6 lg:px-8 max-w-6xl",
       className
     )}>
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 text-center sm:gap-16">
+      <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 text-center sm:gap-16">
         <div className="flex flex-col items-center gap-4 px-4 sm:gap-8">
-          <h2 className="max-w-[720px] text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight">
-            {title}
+          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            Loved by thousands
           </h2>
-          <p className="text-md max-w-[600px] font-medium text-muted-foreground sm:text-xl">
-            {description}
+          <p className="text-lg text-muted-foreground">
+            See what our customers have to say about their experience
           </p>
         </div>
 

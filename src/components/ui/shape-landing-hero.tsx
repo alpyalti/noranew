@@ -220,7 +220,7 @@ function HeroGeometric({
                         {/* Blue glow effect */}
                         <div className={cn(
                             "absolute left-1/2 -top-5 -translate-x-1/2 -z-10",
-                            isDark ? "opacity-40" : "opacity-100"
+                            isDark ? "opacity-40" : "opacity-90"
                         )} aria-hidden="true">
                             <div className="relative">
                                 <div className="absolute inset-0 blur-[100px] will-change-transform">
