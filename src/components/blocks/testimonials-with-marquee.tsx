@@ -22,9 +22,10 @@ export function TestimonialsSection({
     <section className={cn(
       "bg-background text-foreground",
       "py-12 sm:py-24 md:py-32 px-0",
+      "container mx-auto px-4 md:px-6 lg:px-8 max-w-6xl",
       className
     )}>
-      <div className="mx-auto flex max-w-container flex-col items-center gap-4 text-center sm:gap-16">
+      <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 text-center sm:gap-16">
         <div className="flex flex-col items-center gap-4 px-4 sm:gap-8">
           <h2 className="max-w-[720px] text-3xl font-semibold leading-tight sm:text-5xl sm:leading-tight">
             {title}
@@ -40,35 +41,40 @@ export function TestimonialsSection({
               transform: translateX(0);
             }
             100% {
-              transform: translateX(calc(-50% - var(--gap)/2));
+              transform: translateX(-50%);
             }
           }
           .testimonial-marquee {
             animation: marquee 40s linear infinite;
+            display: flex;
+            width: max-content;
+            gap: 1rem;
           }
           .testimonial-container:hover .testimonial-marquee {
             animation-play-state: paused;
           }
+          .testimonial-group {
+            display: flex;
+            gap: 1rem;
+          }
         `}</style>
 
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden testimonial-container">
-          <div className="flex w-full overflow-hidden p-2 [--gap:1rem]">
-            <div className="flex w-fit testimonial-marquee">
-              <div className="flex shrink-0 justify-around gap-4 mr-4">
+          <div className="flex w-full overflow-hidden">
+            <div className="testimonial-marquee">
+              <div className="testimonial-group">
                 {testimonials.map((testimonial, i) => (
-                  <TestimonialCard 
-                    key={`set1-${i}`}
-                    {...testimonial}
-                  />
+                  <div key={`set1-${i}`} className="w-[320px] shrink-0">
+                    <TestimonialCard {...testimonial} />
+                  </div>
                 ))}
               </div>
-              <div className="flex shrink-0 justify-around gap-4">
+              <div className="testimonial-group">
                 {testimonials.map((testimonial, i) => (
-                  <TestimonialCard 
-                    key={`set2-${i}`}
-                    {...testimonial}
-                  />
-              ))}
+                  <div key={`set2-${i}`} className="w-[320px] shrink-0">
+                    <TestimonialCard {...testimonial} />
+                  </div>
+                ))}
               </div>
             </div>
           </div>

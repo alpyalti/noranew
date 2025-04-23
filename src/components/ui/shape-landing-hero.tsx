@@ -116,7 +116,7 @@ function HeroGeometric({
             {shapes}
 
             <div className="relative z-10 container mx-auto px-4 md:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto text-center pt-10 md:pt-14">
+                <div className="max-w-4xl mx-auto text-center pt-20 md:pt-24">
                     <motion.div
                         custom={0}
                         variants={fadeUpVariants}
@@ -215,7 +215,7 @@ function HeroGeometric({
                         variants={fadeUpVariants}
                         initial="hidden"
                         animate="visible"
-                        className="mt-32 relative w-[calc(100vw-8rem)] md:w-[calc(100vw-12rem)] lg:w-[calc(100vw-16rem)] max-w-[1200px] left-[50%] -translate-x-[50%] aspect-[21/9] mb-[-10%]"
+                        className="mt-32 relative w-[calc(100vw-8rem)] md:w-[calc(100vw-12rem)] lg:w-[calc(100vw-16rem)] max-w-[1200px] left-[50%] -translate-x-[50%] aspect-[16/9] mb-[-10%]"
                     >
                         {/* Blue glow effect */}
                         <div className={cn(
@@ -250,10 +250,10 @@ function HeroGeometric({
 
                             {/* The actual image */}
                             <img
-                                src="https://placehold.co/3840x1640/1a1a1a/ffffff?text=AI-Powered+Marketing+Platform"
+                                src={isDark ? "/black.png" : "/white2.png"}
                                 alt="Hero section image"
                                 className={cn(
-                                    "w-full h-full object-cover",
+                                    "w-full h-full object-contain",
                                     isDark 
                                         ? "opacity-75" 
                                         : "opacity-85"

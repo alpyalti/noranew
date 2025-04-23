@@ -450,7 +450,7 @@ export default function Home() {
           <div className="text-center space-y-4 mb-4">
             <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Frequently Asked Questions</h2>
             <p className="text-muted-foreground text-lg">Everything you need to know about our platform and services</p>
-          </div>
+        </div>
           <Faq3 heading="" description="" />
         </section>
 
@@ -472,7 +472,7 @@ export default function Home() {
           flickerChance={0.2} 
           maxOpacity={0.2}
           color={mounted && resolvedTheme === "dark" ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"} 
-        />
+          />
         <div className="absolute inset-0 z-20">
           <TextGrid text="UNLEASH YOUR POTENTIAL" />
         </div>

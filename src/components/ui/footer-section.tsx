@@ -91,7 +91,7 @@ function Footerdemo() {
                     <Button 
                       variant="outline" 
                       size="icon" 
-                      className="rounded-lg transition-all duration-300 hover:ring-2 hover:ring-primary hover:ring-offset-1 hover:border-primary hover:text-primary"
+                      className="rounded-lg transition-all duration-300 hover:ring-2 hover:ring-primary hover:border-primary hover:text-primary"
                     >
                       <Facebook className="h-4 w-4" />
                       <span className="sr-only">Facebook</span>
@@ -108,7 +108,7 @@ function Footerdemo() {
                     <Button 
                       variant="outline" 
                       size="icon" 
-                      className="rounded-lg transition-all duration-300 hover:ring-2 hover:ring-primary hover:ring-offset-1 hover:border-primary hover:text-primary"
+                      className="rounded-lg transition-all duration-300 hover:ring-2 hover:ring-primary hover:border-primary hover:text-primary"
                     >
                       <Twitter className="h-4 w-4" />
                       <span className="sr-only">Twitter</span>
@@ -125,7 +125,7 @@ function Footerdemo() {
                     <Button 
                       variant="outline" 
                       size="icon" 
-                      className="rounded-lg transition-all duration-300 hover:ring-2 hover:ring-primary hover:ring-offset-1 hover:border-primary hover:text-primary"
+                      className="rounded-lg transition-all duration-300 hover:ring-2 hover:ring-primary hover:border-primary hover:text-primary"
                     >
                       <Instagram className="h-4 w-4" />
                       <span className="sr-only">Instagram</span>
@@ -142,7 +142,7 @@ function Footerdemo() {
                     <Button 
                       variant="outline" 
                       size="icon" 
-                      className="rounded-lg transition-all duration-300 hover:ring-2 hover:ring-primary hover:ring-offset-1 hover:border-primary hover:text-primary"
+                      className="rounded-lg transition-all duration-300 hover:ring-2 hover:ring-primary hover:border-primary hover:text-primary"
                     >
                       <Linkedin className="h-4 w-4" />
                       <span className="sr-only">LinkedIn</span>
