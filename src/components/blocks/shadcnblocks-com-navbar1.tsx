@@ -230,7 +230,7 @@ const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger className="bg-transparent hover:bg-accent">
+        <NavigationMenuTrigger className="bg-transparent hover:bg-accent text-sm font-medium">
           {item.title}
         </NavigationMenuTrigger>
         <NavigationMenuContent>
@@ -263,7 +263,7 @@ const renderMenuItem = (item: MenuItem) => {
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
       href={item.url}
-        className="bg-transparent hover:bg-accent px-4 py-2 rounded-md"
+        className="bg-transparent hover:bg-accent px-4 py-2 rounded-md text-sm font-medium"
     >
       {item.title}
       </NavigationMenuLink>
@@ -275,7 +275,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <AccordionItem key={item.title} value={item.title} className="border-b-0">
-        <AccordionTrigger className="py-0 font-semibold hover:no-underline">
+        <AccordionTrigger className="py-0 text-sm font-medium hover:no-underline">
           {item.title}
         </AccordionTrigger>
         <AccordionContent className="mt-2">
@@ -287,7 +287,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
             >
               {subItem.icon}
               <div>
-                <div className="text-sm font-semibold">{subItem.title}</div>
+                <div className="text-sm font-medium">{subItem.title}</div>
                 {subItem.description && (
                   <p className="text-sm leading-snug text-muted-foreground">
                     {subItem.description}
@@ -302,7 +302,7 @@ const renderMobileMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <a key={item.title} href={item.url} className="font-semibold">
+    <a key={item.title} href={item.url} className="text-sm font-medium">
       {item.title}
     </a>
   );

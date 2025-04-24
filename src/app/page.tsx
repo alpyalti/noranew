@@ -16,7 +16,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { TextGrid } from "@/components/ui/text-grid";
 import { Faq3 } from "@/components/blocks/faq3";
 import { CTA } from "@/components/ui/call-to-action";
-import { Zap, BarChart, Shield, Users, Code, Sparkles, Lightbulb, Wand2, Camera, BarChart2, Image, Users2, Palette, TrendingUp } from "lucide-react";
+import { Zap, BarChart, Shield, Users, Code, Sparkles, Lightbulb, Wand2, Camera, BarChart2, Image as ImageIcon, Users2, Palette, TrendingUp } from "lucide-react";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { TestimonialsSection } from "@/components/blocks/testimonials-with-marquee";
 import { ConversionScoreChart } from "@/components/ui/conversion-score-chart";
@@ -24,6 +24,10 @@ import { GridPattern } from "@/components/ui/grid-pattern";
 import { RadialScoreChart } from "@/components/ui/radial-score-chart";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { PartnerLogos } from "@/components/ui/partner-logos";
+import { Ripple } from "@/components/magicui/ripple";
+import { BackgroundPaths } from "@/components/ui/background-paths";
+import { SimpleBackgroundPaths } from "@/components/ui/background-paths";
+import Image from "next/image";
 
 // Counter animation component for the engagement metrics card
 const CounterAnimation = () => {
@@ -332,11 +336,23 @@ export default function Home() {
               <BentoCard
                 name="One-Click Ad Creation"
                 className="col-span-3 md:col-span-2"
-                background={<div />}
-                Icon={Wand2}
-                description="Launch scroll-stopping ad creatives in seconds — no design skills needed."
+                background={
+                  <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute bottom-0 right-0 w-[75%] h-[85%]">
+                      <Image
+                        src="/cardbg.webp"
+                        alt="Card Background"
+                        fill
+                        className="object-contain opacity-70"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                  </div>
+                }
+                Icon={ImageIcon}
+                description="Find or generate premium, commercially-safe stock images and videos with a prompt."
                 href="#"
-                cta="Try ad creator"
+                cta="Try image generator"
               />
               <BentoCard
                 name="Product Photo & Video Shoots"
@@ -361,7 +377,15 @@ export default function Home() {
               <BentoCard
                 name="AI-Powered Daily Pulse"
                 className="col-span-3 md:col-span-2"
-                background={<div />}
+                background={
+                  <div className="absolute inset-0">
+                    <Ripple
+                      mainCircleSize={150}
+                      mainCircleOpacity={0.35}
+                      numCircles={6}
+                    />
+                  </div>
+                }
                 Icon={Sparkles}
                 description="Get fresh content ideas daily — AI scans the internet so you don't have to."
                 href="#"
@@ -373,7 +397,7 @@ export default function Home() {
                 name="Localization"
                 className="col-span-3 md:col-span-2"
                 background={
-                  <div className="absolute right-[-20%] bottom-[-30%] w-[80%] h-[80%] opacity-20">
+                  <div className="absolute right-[-10%] top-[-0%] w-[80%] h-[80%] opacity-40 dark:opacity-15">
                     <Globe />
                   </div>
                 }
@@ -386,7 +410,7 @@ export default function Home() {
                 name="Smart Stock Generator"
                 className="col-span-3 md:col-span-1"
                 background={<div />}
-                Icon={Image}
+                Icon={ImageIcon}
                 description="Find or generate premium, commercially-safe stock images and videos with a prompt."
                 href="#"
                 cta="Generate assets"
@@ -405,7 +429,11 @@ export default function Home() {
               <BentoCard
                 name="Creative Utility Suite"
                 className="col-span-3 md:col-span-2"
-                background={<div />}
+                background={
+                  <div className="absolute inset-0 opacity-20">
+                    <SimpleBackgroundPaths />
+                  </div>
+                }
                 Icon={Palette}
                 description="The all-in-one AI toolkit for every creative need"
                 href="#"
@@ -433,7 +461,7 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="text-lg text-muted-foreground flex items-center">
                   <span className="mr-2 text-xl">•</span>
-                  <TooltipProvider>
+                  <TooltipProvider delayDuration={100}>
                     <Tooltip>
                       <TooltipTrigger>
                         <span className="border-b border-dashed border-muted-foreground cursor-help">Conversion Score</span>
@@ -446,29 +474,35 @@ export default function Home() {
                 </div>
                 <div className="text-lg text-muted-foreground flex items-center">
                   <span className="mr-2 text-xl">•</span>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <span className="border-b border-dashed border-muted-foreground cursor-help">High-ROI</span>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <span>Our AI optimizes your creatives for maximum return on investment, based on real campaign data.</span>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider> creatives in seconds
+                  <div className="flex items-center gap-1">
+                    <TooltipProvider delayDuration={100}>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <span className="border-b border-dashed border-muted-foreground cursor-help">High-ROI</span>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <span>Our AI optimizes your creatives for maximum return on investment, based on real campaign data.</span>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <span>creatives in seconds</span>
+                  </div>
                 </div>
                 <div className="text-lg text-muted-foreground flex items-center">
                   <span className="mr-2 text-xl">•</span>
-                  Fully customizable & <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <span className="border-b border-dashed border-muted-foreground cursor-help">platform-ready</span>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <span>Your creatives are automatically formatted for all major platforms, ready to publish instantly.</span>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <div className="flex items-center gap-1">
+                    <span>Fully customizable &</span>
+                    <TooltipProvider delayDuration={100}>
+                      <Tooltip>
+                        <TooltipTrigger>
+                          <span className="border-b border-dashed border-muted-foreground cursor-help">platform-ready</span>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <span>Your creatives are automatically formatted for all major platforms, ready to publish instantly.</span>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
                 </div>
                 <div className="text-lg text-muted-foreground flex items-center">
                   <span className="mr-2 text-xl">•</span>
